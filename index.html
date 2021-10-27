@@ -12,39 +12,43 @@
 <body onload="init()">
 
     <header class="header1">
-        <div class="logo">memegen</div>
-        <div class="header-btn">
-            <button>Gallery</button>
-            <button>About</button>
-        </div>
+        <div class="logo"><img src="img/LOGO.png"></div>
+        <ul class="header-links">
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
     </header>
 
     <header class="header2">
-        <div class="search-input">Search</div>
-        <div class="most-searched-words"> most searched words</div>
+        <div class="search-input-container">
+            <input id="search-input" placeholder="Enter search keyword">
+            <img src="img/search-icon.png" onclick="onSearch()">
+        </div>
+        <div class="most-searched-words">
+            <canvas class="searched-words-canvas" width="700" height="70"></canvas>
+        </div>
     </header>
 
     <main class="main-layout">
         <section class="gallery-container main-layout"></section>
     </main>
 
+
     <section class="canvas-container main-layout">
-
-
         <h1>Canvas</h1>
 
         <section class="btn-container">
-            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()" >
+            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
             <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
             <button onclick="onClear()">CLEAR</button>
             <button onclick="onAbout()">ABOUT</button>
             <button onclick="onUploadImage()">UPLOAD</button>
-            <input type="text" id="text-input" name="text-input" onkeyup="drawText()"> 
+            <input type="text" id="text-input" name="text-input" onkeyup="drawText()">
             <button onclick="onNextText()">+</button>
             <button onclick="onIncreaseFontSize()">A+</button>
             <button onclick="onDecreaseFontSize()">A-</button>
             <button onclick="onGoUp()">UP</button>
-            <button onclick="onGoDown()" >DOWN</button>
+            <button onclick="onGoDown()">DOWN</button>
             <button onclick="onSwitchLines()">Switch Lines</button>
             <select onchange="onFontSelect(this.value)">
                 <option value="Helvetica">Helvetica</option>
@@ -58,29 +62,28 @@
 
         </section>
 
-
-
         <canvas class="meme-canvas" width="1000" height="800"></canvas>
     </section>
 
 
     <section class="my-info main-layout">
-        <img src="img-square/1.jpg">
+        <div class="my-image"><img src="img-square/12.jpg"></div>
+
         <div class="my-info-right">
             <h2>My Name</h2>
-            <p>Know about me</p>
-            <div>
-                <img src="#">
-                <img src="#">
-                <img src="#">
+            <p>some infomration about my, my styles, my images, my hobbies</p>
+            <div class="social-media">
+                <img src="img/linkedin-logo.png">
+                <img src="img/facebook-logo.png">
+                <img src="img/github-logo.png">
             </div>
         </div>
     </section>
 
 
     <footer>
-        <div class="logo">Logo</div>
-        <p class="copy-rights"> all rights recived 2019</p>
+            <div class="logo"><img src="img/LOGO.png"></div>
+            <p class="copy-rights"> all rights recived 2019</p>
     </footer>
 
     <script src="js/services/upload-image.service.js"></script>

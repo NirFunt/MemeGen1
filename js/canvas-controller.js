@@ -90,6 +90,11 @@ function resizeCanvas() {
 function onImageClick(imageId) {
     setMemeImgId(imageId)
     drawImgFromlocal(imageId);
+    document.querySelector('.header2').style.display = 'none';
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('.my-info').style.display = 'none';
+    document.querySelector('.canvas-container').style.display = 'inline-block';
+    
 }
 
 function drawImgFromlocal(imageId) {
@@ -121,12 +126,12 @@ function onNextText() {
     NextText();
 }
 
-function onGoUp () {
+function onGoUp() {
     moveText(-5);
     drawText();
 }
 
-function onGoDown () {
+function onGoDown() {
     moveText(+5);
     drawText();
 }
@@ -137,6 +142,10 @@ function onSwitchLines() {
 }
 
 
+
+function onSearch () {
+    alert('not ready');
+}
 
 
 

@@ -33,56 +33,121 @@ body {
 }
 
 main {
-    width: 100vw;
     background-color: gold;
 }
 
+.logo img {
+    width: 70px;
+}
 
+.header-links a{
+    display: block;
+    text-decoration: none;
+    height: 50px;
+    padding-top: 12px;
+}
+
+.header-links a:hover{
+    border-bottom: blue 2px solid;
+}
+
+.search-input-container img{
+    width: 20px;
+}
 
 /* LAYOUT */
 
 .header1 {
     background-color: orange;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    height: 100px;
+    align-items: center;
+    height: 50px;
+}
+.header1 .logo {
+    margin-left: 30px;
+}
+
+.header-links{
+    display: flex;
+    margin-right: 50px;
+    gap: 30px;
+    list-style-type: none;
 }
 
 .header2 {
     background-color: red;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     height: 100px; 
+}
+
+.search-input-container {
+    margin-left: 30px;
+}
+
+.searched-words-canvas {
+    background-color: blue;
+    margin-right: 40px;
+}
+
+main {
+    background-color: gray;
+    padding: 20px 30px;
+    margin-bottom: 30px;
 }
 
 .gallery-container {
     display: grid;
-    /* grid-template-columns: repeat(3,minmax(326px,326px));
-    grid-template-rows: repeat(6, minnax(326px,326px)) ; */
-    /* auto-fill and other? */
-
-    grid-template-columns: 326px 326px 326px;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;;
-    /* gap: 20px; */
+    gap: 20px;
 }
 
+
+.canvas-container {
+    display: none;
+}
 .meme-canvas {
     background-color: gray;
+    width: 1000px;
+    height: 800px;
 }
+
 
 .my-info {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     gap: 50px;
+    margin-bottom: 100px;
+}
+
+.my-image {
+    border-radius: 50%;
+    background-color: green;
+    width: 200px;
+    height: 200px;
+}
+
+.my-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.social-media img {
+    width: 20px;
+    background-color: orange;
+    color: white;
 }
 
 footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    background-color: rgb(47, 0, 255);
+    align-items: center;
+    background-color: orange;
     height: 100px;
 }
 
