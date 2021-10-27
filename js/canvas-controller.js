@@ -4,9 +4,7 @@ var gElCanvas;
 var gCtx;
 
 var gDrawValues = {
-    shapeColor: 'black',
-    borderColor: 'black',
-    shape: 'line',
+    color: 'black',
     isClicked: false
 }
 
@@ -35,16 +33,9 @@ function addEventListeners() {
     });
 }
 
-function onShapeColorPick() {
-    gDrawValues.shapeColor = document.querySelector('#shape-color').value;
-}
-
-function onBorderColorPick() {
-    gDrawValues.borderColor = document.querySelector('#border-color').value;
-}
-
-function onSetShape(shape) {
-    gDrawValues.shape = shape;
+function onColorPick() {
+    gDrawValues.color = document.querySelector('#selected-color').value;
+    drawText();
 }
 
 function onDown({ offsetX, offsetY }) {
@@ -64,109 +55,9 @@ function onUp() {
     console.log('up')
 }
 
-function onDraw(ev) {
-    var { offsetX, offsetY } = ev;
-
-    switch (gDrawValues.shape) {
-        case 'line':
-            drawLine(offsetX, offsetY);
-            break;
-        case 'lines':
-            drawLines(offsetX, offsetY);
-            break;
-        case 'rod':
-            drawLinePoles(offsetX, offsetY);
-            break;
-        case 'square':
-            drawSquare(offsetX, offsetY, 100, 100);
-            break;
-        case 'square2':
-            drawSquare2(offsetX, offsetY, (gPrevious.prevX - offsetX + 1) * 3, (gPrevious.prevY - offsetY + 3) * 9);
-            gPrevious.prevX = offsetX;
-            gPrevious.prevY = offsetY;
-            break;
-    }
-}
-
-function drawLine(startX, startY) {
-    var endX = startX + 1;
-    var endY = startY + 1;
-    gCtx.beginPath();
-    gCtx.moveTo(startX, startY);
-    gCtx.lineTo(endX, endY);
-    gCtx.lineWidth = 4;
-    gCtx.strokeStyle = gDrawValues.borderColor;
-    gCtx.stroke();
-}
-
-function drawLines(startX, startY) {
-    drawLine(startX - 10, startY - 10);
-    drawLine(startX - 20, startY - 20);
-    drawLine(startX - 30, startY - 30);
-    drawLine(startX - 40, startY - 40);
-    drawLine(startX, startY);
-    drawLine(startX + 10, startY + 10);
-    drawLine(startX + 20, startY + 30);
-    drawLine(startX + 3, startY + 30);
-    drawLine(startX + 40, startY + 40);
-}
-
-function drawLinePoles(startX, startY) {
-    var endX = startX + 100;
-    var endY = startY + 100;
-    gCtx.beginPath();
-    gCtx.moveTo(startX, startY);
-    gCtx.lineTo(endX, endY);
-    gCtx.lineWidth = 4;
-    gCtx.strokeStyle = gDrawValues.borderColor;
-    gCtx.stroke();
-}
-
-function drawSquare(startX, startY, endX, endY) {
-    gCtx.beginPath();
-    gCtx.rect(startX, startY, endX, endY);
-    gCtx.fillStyle = gDrawValues.shapeColor;
-    gCtx.fillRect(startX, startY, endX, endY);
-    gCtx.strokeStyle = gDrawValues.borderColor;
-    gCtx.lineWidth = 4;
-    gCtx.stroke();
-}
-
-function drawSquare2(startX, startY, endX, endY) {
-    gCtx.beginPath();
-    gCtx.rect(startX, startY, endX, endY);
-    gCtx.fillStyle = gDrawValues.shapeColor;
-    // gCtx.fillRect(startX, startY, endX, endY);
-    gCtx.strokeStyle = gDrawValues.borderColor;
-    gCtx.lineWidth = 4;
-    gCtx.stroke();
-}
-
-
-function onWriteTxt() {
-    var meme = getMemes();
-    var { txt, size, align, color, font } = meme.lines[0];
-    drawText(txt, size, align, color, font);
-}
-
-function drawText(txt, size, align, color, font) {
-    var x, y;
-    gCtx.beginPath();
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = color;
-    gCtx.font = `${size}px ${font}`;
-    if (align === 'left') {
-        x = 50;
-        y = 50;
-    }
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeText(txt, x, y);
-}
-
-function drawText2(align = 'left', font = 'IMPACT') {
+function drawText(align = 'left', font = 'IMPACT') {
     var txt = document.querySelector('#text-input').value;
-    setLine(txt, 'left', gDrawValues.shapeColor, font, 1);
+    setLine(txt, 'left', gDrawValues.color, font, 1);
     onClear();
     drawImgFromlocal(getMemeImgId());
 
@@ -189,7 +80,6 @@ function drawText2(align = 'left', font = 'IMPACT') {
 
 }
 
-
 function onClear() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
@@ -197,16 +87,6 @@ function onClear() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth - 50;
-}
-
-function onSave(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'canvas-download.jpeg';
-}
-
-function onUploadImage() {
-    uploadImg();
 }
 
 function onImageClick(imageId) {
@@ -223,11 +103,44 @@ function drawImgFromlocal(imageId) {
     }
 }
 
-
 function onIncreaseFontSize() {
     setSize(5)
+    drawText();
 }
 
 function onDecreaseFontSize() {
-    setSize(-5)
+    setSize(-5);
+    drawText();
+}
+
+
+
+
+
+
+function onSave(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'canvas-download.jpeg';
+}
+
+function onUploadImage() {
+    uploadImg();
+}
+
+
+function onDraw(ev) {
+    var { offsetX, offsetY } = ev;
+    drawLine(offsetX, offsetY);
+}
+
+function drawLine(startX, startY) {
+    var endX = startX + 1;
+    var endY = startY + 1;
+    gCtx.beginPath();
+    gCtx.moveTo(startX, startY);
+    gCtx.lineTo(endX, endY);
+    gCtx.lineWidth = 4;
+    gCtx.strokeStyle = gDrawValues.borderColor;
+    gCtx.stroke();
 }

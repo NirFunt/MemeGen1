@@ -34,24 +34,12 @@
         <h1>Canvas</h1>
 
         <section class="btn-container">
-            <input type="color" name="shape-color" id="shape-color" onchange="onShapeColorPick()">
-            <input type="color" name="border-color" id="border-color" onchange="onBorderColorPick()">
-            <select onchange="onSetShape(this.value)">
-                <option value="line">Line</option>
-                <option value="lines">Lines</option>d
-                <option value="rod">Rod</option>
-                <option value="square">Square</option>
-                <option value="square2">Square2</option>
-                <option value="rectangle">Rectangle</option>
-                <option value="triangle">Triangle</option>
-                <option value="circle">Circle</option>
-            </select>
+            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
             <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
             <button onclick="onClear()">CLEAR</button>
             <button onclick="onAbout()">ABOUT</button>
             <button onclick="onUploadImage()">UPLOAD</button>
-            <button onclick="onWriteTxt()">Write Text</button>
-            <input type="text" id="text-input" name="text-input" onkeyup="drawText2()"> 
+            <input type="text" id="text-input" name="text-input" onkeyup="drawText()"> 
             <button onclick="onIncreaseFontSize()">A+</button>
             <button onclick="onDecreaseFontSize()">A-</button>
             <div class="user-msg"></div>
