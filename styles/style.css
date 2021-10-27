@@ -68,6 +68,10 @@ main {
     /* gap: 20px; */
 }
 
+.meme-canvas {
+    background-color: gray;
+}
+
 .my-info {
     display: flex;
     flex-direction: row;

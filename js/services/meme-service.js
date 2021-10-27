@@ -23,7 +23,6 @@ var gMeme = {
 }
 
 
-
 function getImages () {
     return gImgs;
 }
