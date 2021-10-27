@@ -12,9 +12,9 @@
 <body onload="init()">
 
     <header class="header1">
-        <div class="logo"><img src="img/LOGO.png"></div>
+        <div class="logo"><img src="ICONS/LOGO.png"></div>
         <ul class="header-links">
-            <li><a href="#">Gallery</a></li>
+            <li><a href="#" onclick="goToGallery()">Gallery</a></li>
             <li><a href="#">About</a></li>
         </ul>
     </header>
@@ -38,27 +38,40 @@
         <canvas class="meme-canvas" width="1000" height="800"></canvas>
 
         <section class="btn-container">
-            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
-            <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
-            <button onclick="onClear()">CLEAR</button>
-            <button onclick="onAbout()">ABOUT</button>
-            <button onclick="onUploadImage()">UPLOAD</button>
-            <input type="text" id="text-input" name="text-input" onkeyup="drawText()">
-            <button onclick="onNextText()">+</button>
-            <button onclick="onIncreaseFontSize()">A+</button>
-            <button onclick="onDecreaseFontSize()">A-</button>
-            <button onclick="onGoUp()">UP</button>
-            <button onclick="onGoDown()">DOWN</button>
-            <button onclick="onSwitchLines()">Switch Lines</button>
-            <select onchange="onFontSelect(this.value)">
+           <div><input type="text" id="text-input" name="text-input" onkeyup="drawText()"></div> 
+
+           <div> <img onclick="onSwitchLines()" src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></div>
+            <div><img onclick="onNextText()" src="ICONS/add.png"></div>
+            <div><img onclick="onRemove()" src="ICONS/trash.png"></div>
+
+            <div><img onclick="onIncreaseFontSize()" src="ICONS/increase font - icon.png"></div>
+            <div><img onclick="onDecreaseFontSize()" src="ICONS/decrease font - icon.png"></div>
+            <div><img onclick="onAlignLeft()" src="ICONS/align-to-left.png"></div>
+            <div><img onclick="onAlignCenter()" src="ICONS/center-text-alignment.png"></div>
+            <div><img onclick="onAlignRight()" src="ICONS/align-to-right.png"></div>
+
+            <div><img onclick="onGoUp()" src="ICONS/up-arrrow.png"></div>
+            <div><img onclick="onGoDown()" src="ICONS/down-arrrow.png"></div>
+
+            <div><select onchange="onFontSelect(this.value)">
                 <option value="Helvetica">Helvetica</option>
                 <option value="Arial">Arial</option>
                 <option value="IMPACT">IMPACT</option>
                 <option value="Sans-Serif">Sans-Serif</option>
                 <option value="Helvetica Neue">Helvetica Neue</option>
-            </select>
+            </select></div>
+            <div><img onclick="onSetBorder()" src="ICONS/text stroke.png"></div>
+            <div><input type="color" name="selected-color" id="selected-color" onchange="onColorPick()"><img src="ICONS/paint-board-and-brush.png"></div>
+            
+            <div><button>Go Left</button></div>
+            <div><canvas width="100px" height="100px">Stikers</canvas></div>
+            <div><button>Go Right</button></div>
+
+            <div><button><a href="#" onclick="onSave(this)" download="">Save</a></button></div>
+            <div><button onclick="onUploadImage()">UPLOAD</button></div>
+           
             <div class="user-msg"></div>
-            <div class="share-container"></div>
+            <div class="share-container">Share</div>
         </section>
 
 
@@ -72,16 +85,16 @@
             <h2>My Name</h2>
             <p>some infomration about my, my styles, my images, my hobbies</p>
             <div class="social-media">
-                <img src="img/linkedin-logo.png">
-                <img src="img/facebook-logo.png">
-                <img src="img/github-logo.png">
+                <img src="ICONS/linkedin-logo.png">
+                <img src="ICONS/facebook-logo.png">
+                <img src="ICONS/github-logo.png">
             </div>
         </div>
     </section>
 
 
     <footer>
-        <div class="logo"><img src="img/LOGO.png"></div>
+        <div class="logo"><img src="ICONS/LOGO.png"></div>
         <p class="copy-rights"> all rights recived 2019</p>
     </footer>
 

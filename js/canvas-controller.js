@@ -78,6 +78,11 @@ function drawText() {
     }, 100);
 }
 
+function onRemove() {
+    onClear();
+    clearMeme();
+    drawImgFromlocal(getMeme().selectedImgId);
+}
 function onClear() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
@@ -142,9 +147,17 @@ function onSwitchLines() {
 }
 
 
-
 function onSearch () {
     alert('not ready');
+}
+
+function goToGallery() {
+    document.querySelector('.header2').style.display = 'flex';
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('.my-info').style.display = 'flex';
+    document.querySelector('.canvas-container').style.display = 'none';
+    onClear();
+    clearMeme();
 }
 
 

@@ -9,16 +9,9 @@ var gImgs = [];
 _createImages();
 
 var gMeme = {
-    selectedImgId: 5,
+    selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        // {
-        //     txt: 'I never eat Falafel',
-        //     size: 20,
-        //     align: { x: 50, y: 50 },
-        //     color: 'red',
-        //     font: 'IMPACT'
-        // }
     ]
 }
 
@@ -110,6 +103,15 @@ function switchLines() {
     var temp  = gMeme.lines[0].align.y;
     gMeme.lines[0].align.y = gMeme.lines[1].align.y
     gMeme.lines[1].align.y = temp;
+}
+
+function clearMeme() {
+    gMeme = {
+        selectedImgId: 0,
+        selectedLineIdx: 0,
+        lines: [
+        ]
+    };
 }
 
 function _createImages() {
