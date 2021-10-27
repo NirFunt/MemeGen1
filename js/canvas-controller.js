@@ -55,29 +55,25 @@ function onUp() {
     console.log('up')
 }
 
-function drawText(align = 'left', font = 'IMPACT') {
-    var txt = document.querySelector('#text-input').value;
-    setLine(txt, 'left', gDrawValues.color, font, 1);
+function drawText() {
     onClear();
     drawImgFromlocal(getMemeImgId());
+    var txt = document.querySelector('#text-input').value;
+    setLine(txt, gDrawValues.color);
 
-    var { txt, size, align, color, font } = getMemes().lines[1];
-
-    var x, y;
-    gCtx.beginPath();
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = color;
-    gCtx.font = `${size}px ${font}`;
-    if (align === 'left') {
-        x = 50;
-        y = 50;
-    }
     setTimeout(function () {
-        gCtx.fillText(txt, x, y);
-        gCtx.strokeText(txt, x, y);
-    }, 50);
-
+        for (var i = 0; i < getMeme().lines.length; i++) {
+            var { txt, size, align, color, font } = getMeme().lines[i];
+            console.log(txt, size, align, color, font);
+            gCtx.beginPath();
+            gCtx.lineWidth = 2;
+            gCtx.strokeStyle = 'black';
+            gCtx.fillStyle = color;
+            gCtx.font = `${size}px ${font}`;
+            gCtx.fillText(txt, align.x, align.y);
+            gCtx.strokeText(txt, align.x, align.y);
+        }
+    }, 100);
 }
 
 function onClear() {
@@ -111,6 +107,16 @@ function onIncreaseFontSize() {
 function onDecreaseFontSize() {
     setSize(-5);
     drawText();
+}
+
+function onFontSelect(fontType) {
+    setFont(fontType);
+    drawText();
+}
+
+function onNextText() {
+    var txt = document.querySelector('#text-input').value = '';
+    NextText();
 }
 
 

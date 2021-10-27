@@ -12,13 +12,13 @@ var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'I never eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red',
-            font: 'IMPACT'
-        }
+        // {
+        //     txt: 'I never eat Falafel',
+        //     size: 20,
+        //     align: { x: 50, y: 50 },
+        //     color: 'red',
+        //     font: 'IMPACT'
+        // }
     ]
 }
 
@@ -32,24 +32,39 @@ function getImageById(imageId) {
     return image;
 }
 
-function getMemes () {
+function getMeme() {
     return gMeme;
 }
 
-function getMemeImgId () {
-   return gMeme.selectedImgId;
+function getMemeImgId() {
+    return gMeme.selectedImgId;
 }
 
-function setMemeIdx (selectedImgId,selectedLineIdx) {
+function setMemeIdx(selectedImgId, selectedLineIdx) {
     gMeme.selectedImgId = selectedImgId;
     gMeme.selectedLineIdx = selectedLineIdx;
 }
 
-function setMemeImgId (selectedImgId) {
+function setMemeImgId(selectedImgId) {
     gMeme.selectedImgId = selectedImgId;
 }
 
-function createLine(txt,size,align,color,font) {
+function createLine(txt, size, color, font) {
+    var align = {};
+    if (gMeme.lines.length === 0) {
+        align.x = 400;
+        align.y = 50;
+    }
+    if (gMeme.lines.length === 1) {
+        align.x = 400;
+        align.y = 750;
+    }
+
+    if (gMeme.lines.length === 2) {
+        align.x = 400;
+        align.y = 400;
+    }
+
     var line = {
         txt,
         size,
@@ -58,27 +73,32 @@ function createLine(txt,size,align,color,font) {
         font
     }
     gMeme.lines.push(line);
-    gMeme.selectedLineIdx = gMeme.lines.length-1;
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
+    console.log(align);
 }
 
-function setLine(txt,align,color,font,selectedLineIdx) {
-    var line = gMeme.lines[selectedLineIdx];
+function setLine(txt, color) {
+    var line = gMeme.lines[gMeme.selectedLineIdx];
     if (line) {
-        line = gMeme.lines[selectedLineIdx];
         line.txt = txt;
-        line.align = align;
         line.color = color;
-        line.font = font;
     } else {
-        createLine(txt,20,align,color,font);
+        createLine(txt, 20, color, 'IMPACT');
     }
-
-
 }
 
-function setSize (num) {
+function setSize(num) {
     console.log(gMeme.selectedLineIdx)
     gMeme.lines[gMeme.selectedLineIdx].size += num;
+}
+
+function setFont(fontType) {
+    console.log(gMeme.lines[gMeme.selectedLineIdx].font, fontType)
+    gMeme.lines[gMeme.selectedLineIdx].font = fontType;
+}
+
+function NextText() {
+    gMeme.selectedLineIdx++;
 }
 
 function _createImages() {

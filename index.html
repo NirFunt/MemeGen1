@@ -34,14 +34,22 @@
         <h1>Canvas</h1>
 
         <section class="btn-container">
-            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
+            <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()" >
             <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
             <button onclick="onClear()">CLEAR</button>
             <button onclick="onAbout()">ABOUT</button>
             <button onclick="onUploadImage()">UPLOAD</button>
             <input type="text" id="text-input" name="text-input" onkeyup="drawText()"> 
+            <button onclick="onNextText()">+</button>
             <button onclick="onIncreaseFontSize()">A+</button>
             <button onclick="onDecreaseFontSize()">A-</button>
+            <select onchange="onFontSelect(this.value)">
+                <option value="Helvetica">Helvetica</option>
+                <option value="Arial">Arial</option>
+                <option value="IMPACT">IMPACT</option>
+                <option value="Sans-Serif">Sans-Serif</option>
+                <option value="Helvetica Neue">Helvetica Neue</option>
+            </select>
             <div class="user-msg"></div>
             <div class="share-container"></div>
 
@@ -49,7 +57,7 @@
 
 
 
-        <canvas class="meme-canvas" width="980" height="800"></canvas>
+        <canvas class="meme-canvas" width="1000" height="800"></canvas>
     </section>
 
 
