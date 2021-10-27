@@ -49,7 +49,7 @@ function setMemeImgId(selectedImgId) {
     gMeme.selectedImgId = selectedImgId;
 }
 
-function createLine(txt, size, color, font) {
+function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
     var align = {};
     if (gMeme.lines.length === 0) {
         align.x = 400;
@@ -74,17 +74,11 @@ function createLine(txt, size, color, font) {
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
-    console.log(align);
 }
 
-function setLine(txt, color) {
+function setText(txt) {
     var line = gMeme.lines[gMeme.selectedLineIdx];
-    if (line) {
         line.txt = txt;
-        line.color = color;
-    } else {
-        createLine(txt, 20, color, 'IMPACT');
-    }
 }
 
 function setSize(num) {
@@ -93,12 +87,17 @@ function setSize(num) {
 }
 
 function setFont(fontType) {
-    console.log(gMeme.lines[gMeme.selectedLineIdx].font, fontType)
     gMeme.lines[gMeme.selectedLineIdx].font = fontType;
 }
 
 function NextText() {
     gMeme.selectedLineIdx++;
+    createLine();
+}
+
+
+function setColor (color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
 function _createImages() {

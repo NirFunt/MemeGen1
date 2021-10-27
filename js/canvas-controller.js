@@ -35,6 +35,7 @@ function addEventListeners() {
 
 function onColorPick() {
     gDrawValues.color = document.querySelector('#selected-color').value;
+    setColor(gDrawValues.color);
     drawText();
 }
 
@@ -59,12 +60,13 @@ function drawText() {
     onClear();
     drawImgFromlocal(getMemeImgId());
     var txt = document.querySelector('#text-input').value;
-    setLine(txt, gDrawValues.color);
+    if (getMeme().lines.length === 0) createLine(txt);
+
+    setText(txt);
 
     setTimeout(function () {
         for (var i = 0; i < getMeme().lines.length; i++) {
             var { txt, size, align, color, font } = getMeme().lines[i];
-            console.log(txt, size, align, color, font);
             gCtx.beginPath();
             gCtx.lineWidth = 2;
             gCtx.strokeStyle = 'black';
