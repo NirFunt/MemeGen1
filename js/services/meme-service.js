@@ -11,13 +11,13 @@ _createImages();
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
-
     lines: [
         {
             txt: 'I never eat Falafel',
             size: 20,
             align: 'left',
-            color: 'red'
+            color: 'red',
+            font: 'IMPACT'
         }
     ]
 }
@@ -30,6 +30,27 @@ function getImages() {
 function getImageById(imageId) {
     var image = gImgs.find(img => { return img.id === +imageId });
     return image;
+}
+
+function getMemes () {
+    return gMeme;
+}
+
+function setMemeIdx (selectedImgId,selectedLineIdx) {
+    gMeme.selectedImgId = selectedImgId;
+    gMeme.selectedLineIdx = selectedLineIdx;
+}
+
+function createLine(txt,size,align,color,font,selectedImgId,selectedLineIdx) {
+    var line = {
+        txt,
+        size,
+        align,
+        color,
+        font
+    }
+    gMeme.lines.push(line);
+    setMemeIdx(selectedImgId,selectedLineIdx);
 }
 
 function _createImages() {

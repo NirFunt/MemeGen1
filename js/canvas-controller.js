@@ -12,6 +12,8 @@ var gDrawValues = {
 
 var gPrevious = {};
 
+var gImageId = null;
+
 function initCanvas() {
     gElCanvas = document.querySelector('.meme-canvas');
     gCtx = gElCanvas.getContext('2d');
@@ -142,6 +144,51 @@ function drawSquare2(startX, startY, endX, endY) {
     gCtx.stroke();
 }
 
+
+function onWriteTxt() {
+    var meme = getMemes();
+    var { txt, size, align, color, font } = meme.lines[0];
+    drawText(txt, size, align, color, font);
+}
+
+function drawText(txt, size, align, color, font) {
+    var x, y;
+    gCtx.beginPath();
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = color;
+    gCtx.font = `${size}px ${font}`;
+    if (align === 'left') {
+        x = 50;
+        y = 50;
+    }
+    gCtx.fillText(txt, x, y);
+    gCtx.strokeText(txt, x, y);
+}
+
+function drawText2(txt = 'hello', size = 30, align = 'left', color = 'red', font = 'IMPACT') {
+    txt = document.querySelector('#text-input').value;
+    onClear();
+    drawImgFromlocal(gImageId);
+
+    var x, y;
+    gCtx.beginPath();
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = color;
+    gCtx.font = `${size}px ${font}`;
+    if (align === 'left') {
+        x = 50;
+        y = 50;
+    }
+    setTimeout(function () {
+        gCtx.fillText(txt, x, y);
+        gCtx.strokeText(txt, x, y);
+    },50);
+  
+}
+
+
 function onClear() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
@@ -162,6 +209,7 @@ function onUploadImage() {
 }
 
 function onImageClick(imageId) {
+    gImageId = imageId;
     drawImgFromlocal(imageId);
 }
 
@@ -170,6 +218,6 @@ function drawImgFromlocal(imageId) {
     var image = getImageById(imageId);
     img.src = image.url;
     img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     }
 }

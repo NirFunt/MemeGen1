@@ -6,7 +6,6 @@ function init () {
 }
 
 function renderGrid() {
-    console.log('asda');
    var images = getImages(); 
    var elGalleryContainer = document.querySelector('.gallery-container');
 

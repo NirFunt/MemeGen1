@@ -25,56 +25,38 @@
     </header>
 
     <main class="main-layout">
-
-        <section class="gallery-container main-layout">
-            <!-- <img src="img-square/1.jpg" class="square-img">
-            <img src="img-square/2.jpg" class="square-img">
-            <img src="img-square/3.jpg" class="square-img">
-            <img src="img-square/4.jpg" class="square-img">
-            <img src="img-square/5.jpg" class="square-img">
-            <img src="img-square/6.jpg" class="square-img">
-            <img src="img-square/7.jpg" class="square-img">
-            <img src="img-square/8.jpg" class="square-img">
-            <img src="img-square/9.jpg" class="square-img">
-            <img src="img-square/11.jpg" class="square-img">
-            <img src="img-square/12.jpg" class="square-img">
-            <img src="img-square/13.jpg"class="square-img">
-            <img src="img-square/14.jpg" class="square-img">
-            <img src="img-square/15.jpg" class="square-img">
-            <img src="img-square/16.jpg" class="square-img">
-            <img src="img-square/17.jpg" class="square-img">
-            <img src="img-square/18.jpg" class="square-img"> -->
-        </section>
-
+        <section class="gallery-container main-layout"></section>
     </main>
 
     <section class="canvas-container main-layout">
 
 
         <h1>Canvas</h1>
-      
-            <section class="btn-container">
-                <input type="color" name="shape-color" id="shape-color" onchange="onShapeColorPick()">
-                <input type="color" name="border-color" id="border-color" onchange="onBorderColorPick()">
-                <select onchange="onSetShape(this.value)">
-                    <option value="line">Line</option>
-                    <option value="lines">Lines</option>d
-                    <option value="rod">Rod</option>
-                    <option value="square">Square</option>
-                    <option value="square2">Square2</option>
-                    <option value="rectangle">Rectangle</option>
-                    <option value="triangle">Triangle</option>
-                    <option value="circle">Circle</option>
-                </select>
-                <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
-                <button onclick="onClear()">CLEAR</button>
-                <button onclick="onAbout()">ABOUT</button>
-                <button onclick="onUploadImage()">UPLOAD</button>
-                <div class="user-msg"></div>
-                <div class="share-container"></div>
-    
-            </section>
-      
+
+        <section class="btn-container">
+            <input type="color" name="shape-color" id="shape-color" onchange="onShapeColorPick()">
+            <input type="color" name="border-color" id="border-color" onchange="onBorderColorPick()">
+            <select onchange="onSetShape(this.value)">
+                <option value="line">Line</option>
+                <option value="lines">Lines</option>d
+                <option value="rod">Rod</option>
+                <option value="square">Square</option>
+                <option value="square2">Square2</option>
+                <option value="rectangle">Rectangle</option>
+                <option value="triangle">Triangle</option>
+                <option value="circle">Circle</option>
+            </select>
+            <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
+            <button onclick="onClear()">CLEAR</button>
+            <button onclick="onAbout()">ABOUT</button>
+            <button onclick="onUploadImage()">UPLOAD</button>
+            <button onclick="onWriteTxt()">Write Text</button>
+            <input type="text" id="text-input" name="text-input" onkeyup="drawText2()"> 
+            <div class="user-msg"></div>
+            <div class="share-container"></div>
+
+        </section>
+
 
 
         <canvas class="meme-canvas" width="980" height="800"></canvas>
@@ -105,13 +87,13 @@
 
     <script src="js/meme-controller.js"></script>
     <script src="js/canvas-controller.js"></script>
-   
-   
-  
-   
-   
-   
-    
+
+
+
+
+
+
+
 </body>
 
 </html>
