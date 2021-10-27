@@ -59,14 +59,13 @@ main {
 
 .gallery-container {
     display: grid;
-    max-width: 980px;
     /* grid-template-columns: repeat(3,minmax(326px,326px));
     grid-template-rows: repeat(6, minnax(326px,326px)) ; */
     /* auto-fill and other? */
 
     grid-template-columns: 326px 326px 326px;
     grid-template-rows: 1fr 1fr 1fr;;
-    gap: 15px;
+    /* gap: 20px; */
 }
 
 .my-info {
@@ -79,7 +78,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: gold;
+    background-color: rgb(47, 0, 255);
     height: 100px;
 }
 
