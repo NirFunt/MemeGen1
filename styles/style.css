@@ -2,6 +2,90 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: azure;
+
+/* HEALPERS  */
+.main-layout {
+    margin-left:auto;
+    margin-right: auto;
+    max-width: 980px;
 }
+
+.square-img {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.gallery-container img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* TYPOGRAPHY */
+
+
+/* BASIC */
+
+body {
+    margin: 0;
+    background-color: azure;
+    width: 100vw;
+}
+
+main {
+    width: 100vw;
+    background-color: gold;
+}
+
+
+
+/* LAYOUT */
+
+.header1 {
+    background-color: orange;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.header2 {
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px; 
+}
+
+.gallery-container {
+    display: grid;
+    max-width: 980px;
+    /* grid-template-columns: repeat(3,minmax(326px,326px));
+    grid-template-rows: repeat(6, minnax(326px,326px)) ; */
+    /* auto-fill and other? */
+
+    grid-template-columns: 326px 326px 326px;
+    grid-template-rows: 1fr 1fr 1fr;;
+    gap: 15px;
+}
+
+.my-info {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: gold;
+    height: 100px;
+}
+
+
+
+
+/* MEDIA QURIES */
+
+
