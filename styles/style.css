@@ -63,6 +63,7 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 50px;
+    margin-bottom: 20px;
 }
 .header1 .logo {
     margin-left: 30px;
@@ -76,11 +77,11 @@ main {
 }
 
 .header2 {
-    background-color: red;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100px; 
+    background-color: lightgray;
 }
 
 .search-input-container {
@@ -104,17 +105,6 @@ main {
     grid-template-rows: 1fr 1fr 1fr;;
     gap: 20px;
 }
-
-
-.canvas-container {
-    display: none;
-}
-.meme-canvas {
-    background-color: gray;
-    width: 1000px;
-    height: 800px;
-}
-
 
 .my-info {
     display: flex;
@@ -151,6 +141,35 @@ footer {
     height: 100px;
 }
 
+
+
+
+
+.canvas-container {
+    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: red;
+    gap: 100px;
+    width: 1300px;
+    margin:auto
+}
+
+.meme-canvas {
+    background-color: gray;
+    width: 500px;
+    height: 500px;
+    margin: 20px 20px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 30px;
+}
 
 
 

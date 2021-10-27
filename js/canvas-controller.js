@@ -93,7 +93,7 @@ function onImageClick(imageId) {
     document.querySelector('.header2').style.display = 'none';
     document.querySelector('main').style.display = 'none';
     document.querySelector('.my-info').style.display = 'none';
-    document.querySelector('.canvas-container').style.display = 'inline-block';
+    document.querySelector('.canvas-container').style.display = 'flex';
     
 }
 

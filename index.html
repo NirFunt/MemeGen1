@@ -34,9 +34,9 @@
     </main>
 
 
-    <section class="canvas-container main-layout">
-        <h1>Canvas</h1>
-
+    <section class="canvas-container">
+        <canvas class="meme-canvas " width="1000" height="800"></canvas>
+        
         <section class="btn-container">
             <input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
             <button><a href="#" onclick="onSave(this)" download="">Save</a></button>
@@ -59,10 +59,9 @@
             </select>
             <div class="user-msg"></div>
             <div class="share-container"></div>
-
         </section>
 
-        <canvas class="meme-canvas" width="1000" height="800"></canvas>
+
     </section>
 
 
@@ -82,8 +81,8 @@
 
 
     <footer>
-            <div class="logo"><img src="img/LOGO.png"></div>
-            <p class="copy-rights"> all rights recived 2019</p>
+        <div class="logo"><img src="img/LOGO.png"></div>
+        <p class="copy-rights"> all rights recived 2019</p>
     </footer>
 
     <script src="js/services/upload-image.service.js"></script>
