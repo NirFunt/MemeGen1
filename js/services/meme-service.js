@@ -36,12 +36,20 @@ function getMemes () {
     return gMeme;
 }
 
+function getMemeImgId () {
+   return gMeme.selectedImgId;
+}
+
 function setMemeIdx (selectedImgId,selectedLineIdx) {
     gMeme.selectedImgId = selectedImgId;
     gMeme.selectedLineIdx = selectedLineIdx;
 }
 
-function createLine(txt,size,align,color,font,selectedImgId,selectedLineIdx) {
+function setMemeImgId (selectedImgId) {
+    gMeme.selectedImgId = selectedImgId;
+}
+
+function createLine(txt,size,align,color,font) {
     var line = {
         txt,
         size,
@@ -50,7 +58,27 @@ function createLine(txt,size,align,color,font,selectedImgId,selectedLineIdx) {
         font
     }
     gMeme.lines.push(line);
-    setMemeIdx(selectedImgId,selectedLineIdx);
+    gMeme.selectedLineIdx = gMeme.lines.length-1;
+}
+
+function setLine(txt,align,color,font,selectedLineIdx) {
+    var line = gMeme.lines[selectedLineIdx];
+    if (line) {
+        line = gMeme.lines[selectedLineIdx];
+        line.txt = txt;
+        line.align = align;
+        line.color = color;
+        line.font = font;
+    } else {
+        createLine(txt,20,align,color,font);
+    }
+
+
+}
+
+function setSize (num) {
+    console.log(gMeme.selectedLineIdx)
+    gMeme.lines[gMeme.selectedLineIdx].size += num;
 }
 
 function _createImages() {
