@@ -121,6 +121,20 @@ function onNextText() {
     NextText();
 }
 
+function onGoUp () {
+    moveText(-5);
+    drawText();
+}
+
+function onGoDown () {
+    moveText(+5);
+    drawText();
+}
+
+function onSwitchLines() {
+    switchLines();
+    drawText();
+}
 
 
 

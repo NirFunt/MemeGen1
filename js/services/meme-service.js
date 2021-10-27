@@ -95,9 +95,21 @@ function NextText() {
     createLine();
 }
 
-
 function setColor (color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function moveText(num) {
+    console.log(num);
+    console.log(gMeme.lines[gMeme.selectedLineIdx].align.y);
+    gMeme.lines[gMeme.selectedLineIdx].align.y += num;
+    console.log(gMeme.lines[gMeme.selectedLineIdx].align.y);
+}
+
+function switchLines() {
+    var temp  = gMeme.lines[0].align.y;
+    gMeme.lines[0].align.y = gMeme.lines[1].align.y
+    gMeme.lines[1].align.y = temp;
 }
 
 function _createImages() {
