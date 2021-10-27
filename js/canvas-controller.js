@@ -47,7 +47,7 @@ function onSetShape(shape) {
     gDrawValues.shape = shape;
 }
 
-function onDown({offsetX,offsetY}) {
+function onDown({ offsetX, offsetY }) {
     gDrawValues.isClicked = true;
     gPrevious.prevX = offsetX;
     gPrevious.prevY = offsetY;
@@ -159,4 +159,17 @@ function onSave(elLink) {
 
 function onUploadImage() {
     uploadImg();
+}
+
+function onImageClick(imageId) {
+    drawImgFromlocal(imageId);
+}
+
+function drawImgFromlocal(imageId) {
+    var img = new Image();
+    var image = getImageById(imageId);
+    img.src = image.url;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
+    }
 }

@@ -23,18 +23,23 @@ var gMeme = {
 }
 
 
-function getImages () {
+function getImages() {
     return gImgs;
 }
 
-function _createImages () {
+function getImageById(imageId) {
+    var image = gImgs.find(img => { return img.id === +imageId });
+    return image;
+}
+
+function _createImages() {
     for (var i = 1; i <= 18; i++) {
-        var image = _createImage(i,'img-square/'+i+'.jpg',['happy','funny','nice'])
+        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice'])
         gImgs.push(image);
     }
 }
 
-function _createImage (id,url,keywords) {
+function _createImage(id, url, keywords) {
     var image = {
         id,
         url,
