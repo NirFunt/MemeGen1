@@ -52,17 +52,17 @@ function setMemeImgId(selectedImgId) {
 function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
     var align = {};
     if (gMeme.lines.length === 0) {
-        align.x = 400;
+        align.x = 130;
         align.y = 50;
     }
     if (gMeme.lines.length === 1) {
-        align.x = 400;
-        align.y = 750;
+        align.x = 130;
+        align.y = 700;
     }
 
     if (gMeme.lines.length === 2) {
-        align.x = 400;
-        align.y = 400;
+        align.x = 130;
+        align.y = 350;
     }
 
     var line = {
