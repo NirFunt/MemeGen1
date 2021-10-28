@@ -17,7 +17,7 @@ var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-    ]
+    ],
 }
 
 
@@ -36,6 +36,10 @@ function getMeme() {
 
 function getMemeImgId() {
     return gMeme.selectedImgId;
+}
+
+function getLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
 }
 
 function setMemeIdx(selectedImgId, selectedLineIdx) {
@@ -68,7 +72,8 @@ function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
         size,
         align,
         color,
-        font
+        font,
+        isTextStroke: false
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
@@ -119,6 +124,11 @@ function clearMeme() {
         lines: [
         ]
     };
+}
+
+function  removeLine() {
+        gMeme.lines.splice([gMeme.selectedLineIdx],1);
+        gMeme.selectedLineIdx--;
 }
 
 function _createImages() {
