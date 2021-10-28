@@ -93,6 +93,10 @@ main {
     cursor: pointer;
 }
 
+.key-words-list2 {
+    display: none;
+}
+
 main {
     background-color: gray;
     padding: 20px 30px;
@@ -180,14 +184,6 @@ footer {
     background-color: gray;
 }
 
-/* .btn-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 30px;
-} */
-
 .btn-container {
     display: grid;
     max-width: 500px;
@@ -201,10 +197,12 @@ footer {
     margin-right: 20px;
 }
 
+
+/* BUTTONS GRID  */
+
 .btn-container div:nth-child(n) {
   /* border: blue 3px solid; */
 }
-
 
 .btn-container img {
     width: 50px;
@@ -311,4 +309,41 @@ footer {
 
 /* MEDIA QURIES */
 
+@media (max-width : 900px) {
+    .header2 {
+        flex-direction: column;
+    }
+    .key-words-list {
+        gap: 15px;
+    }
+}
+
+@media (max-width : 661px) {
+    .my-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .my-info-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .key-words-list {
+        display: none;
+    }
+
+    .key-words-list2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        list-style-type:none;
+        cursor: pointer;
+    }
+}
 

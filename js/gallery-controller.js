@@ -19,13 +19,20 @@ function renderGrid() {
 
 function renderKeyWords() {
    var elKeyWordsContainer = document.querySelector('.key-words-list');
+   var elKeyWordsContainer2 = document.querySelector('.key-words-list2');
    var keywords = getKeyWords();
+   var keywords2 = [];
    var strHTML = '';
+
    for (var word in keywords ) {
-      // console.log(word);
-      strHTML+= `<li style="font-size:${keywords[word]*8}px;" onclick="onSort('${word}')"> ${word}</li> `
+      var liHTML = `<li style="font-size:${keywords[word]*8}px;" onclick="onSort('${word}')"> ${word}</li> `
+      strHTML += liHTML;
+      keywords2.push(liHTML);
    }
    elKeyWordsContainer.innerHTML = strHTML;
+   keywords2 = keywords2.slice(5);
+   keywords2.push(`<li onclick="showMoreKeyWords()"> More </li>`);
+   elKeyWordsContainer2.innerHTML = keywords2.join('');
 }
 
 

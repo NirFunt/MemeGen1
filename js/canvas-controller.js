@@ -82,7 +82,7 @@ function drawText() {
             gCtx.fillText(txt, align.x, align.y);
             if (getMeme().lines[i].isTextStroke) gCtx.strokeText(txt, align.x, align.y);
             if (getMeme().lines[i].isMarked) {
-                gCtx.rect(50,getMeme().lines[i].align.y,400,-30);
+                gCtx.rect(50, getMeme().lines[i].align.y, 400, -30);
                 gCtx.stroke();
             }
         }
@@ -172,43 +172,27 @@ function onAlignRight() {
 function checkCorr({ offsetX, offsetY }) {
     console.log(offsetX, offsetY);
     var meme = getMeme();
-    // console.log(meme.lines[0].align.x, meme.lines[0].align.y, meme.lines[0].area.x, meme.lines[0].area.y)
     if (meme.lines.length === 0) return;
-    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[0].align.y && offsetY > meme.lines[0].align.y-25) {
-        gElCanvas.style.cursor = 'pointer';
-        meme.lines[0].isMarked = true;
-        if (gDrawValues.isClicked && meme.lines[0].isMarked) {
-            gElCanvas.style.cursor = 'grab';
-            meme.lines[0].align.x = offsetX ;
-            meme.lines[0].align.y = offsetY + 15;
-            drawText();
-        }
-    } else gElCanvas.style.cursor = 'default';
-
+    grab(meme, 0, offsetX, offsetY);
     if (meme.lines.length === 1) return;
-    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[1].align.y && offsetY > meme.lines[1].align.y-25) {
-        gElCanvas.style.cursor = 'pointer';
-        meme.lines[1].isMarked = true;
-        if (gDrawValues.isClicked && meme.lines[1].isMarked) {
-            gElCanvas.style.cursor = 'grab';
-            meme.lines[1].align.x = offsetX ;
-            meme.lines[1].align.y = offsetY + 15;
-            drawText();
-        }
-    } else gElCanvas.style.cursor = 'default';
-
+    grab(meme, 1, offsetX, offsetY);
     if (meme.lines.length === 2) return;
-    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[1].align.y && offsetY > meme.lines[2].align.y-25) {
+    grab(meme, 2, offsetX, offsetY);
+}
+
+function grab(meme, num, offsetX, offsetY) {
+    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[num].align.y && offsetY > meme.lines[num].align.y - 25) {
         gElCanvas.style.cursor = 'pointer';
-        meme.lines[2].isMarked = true;
-        if (gDrawValues.isClicked && meme.lines[2].isMarked) {
+        meme.lines[num].isMarked = true;
+        if (gDrawValues.isClicked && meme.lines[num].isMarked) {
             gElCanvas.style.cursor = 'grab';
-            meme.lines[2].align.x = offsetX ;
-            meme.lines[2].align.y = offsetY + 15;
+            meme.lines[num].align.x = offsetX;
+            meme.lines[num].align.y = offsetY + 15;
             drawText();
         }
     } else gElCanvas.style.cursor = 'default';
 }
+
 
 
 function onSave(elLink) {
