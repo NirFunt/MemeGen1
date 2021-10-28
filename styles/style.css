@@ -248,6 +248,7 @@ footer {
 .btn-container div:nth-child(14) {
     grid-column: 4;
     grid-row: 5;
+    position: relative;
 }
 .btn-container div:nth-child(15) {
     grid-column: 1;
@@ -278,8 +279,13 @@ footer {
     grid-row: 7;
 }
 
-
-
+#selected-color {
+    position:absolute;
+    top: 10%;
+    right: 20%;
+    height: 40px;
+    opacity: 0.01;
+}
 
 
 
