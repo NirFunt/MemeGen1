@@ -49,8 +49,8 @@ function onDown({ offsetX, offsetY }) {
 }
 
 function onMove(ev) {
-    if (gDrawValues.isClicked) onDraw(ev);
-    console.log('move', ev.offsetX, ev.offsetY);
+    console.log('move');
+    checkCorr(ev);
 }
 
 function onUp() {
@@ -160,7 +160,22 @@ function onAlignRight() {
 }
 
 
+function checkCorr({ offsetX, offsetY }) {
+    console.log(offsetX, offsetY);
+    var meme = getMeme();
+    console.log(meme.lines[0].align.x, meme.lines[0].align.y, meme.lines[0].area.x, meme.lines[0].area.y)
+    if (offsetX > meme.lines[0].align.x && offsetX < meme.lines[0].area.x
+        && offsetY < meme.lines[0].align.y && offsetY > meme.lines[0].area.y) {
+        gElCanvas.style.cursor = 'pointer';
+        if (gDrawValues.isClicked) {
+            gElCanvas.style.cursor = 'grab';
+            meme.lines[0].align.x = offsetX - meme.lines[0].size*meme.lines.length*2;
+            meme.lines[0].align.y = offsetY + meme.lines[0].size/4 ;
+            drawText();
+        }
+    } else gElCanvas.style.cursor = 'default';
 
+}
 
 
 function onSave(elLink) {
@@ -173,19 +188,3 @@ function onUploadImage() {
     uploadImg();
 }
 
-
-function onDraw(ev) {
-    var { offsetX, offsetY } = ev;
-    drawLine(offsetX, offsetY);
-}
-
-function drawLine(startX, startY) {
-    var endX = startX + 1;
-    var endY = startY + 1;
-    gCtx.beginPath();
-    gCtx.moveTo(startX, startY);
-    gCtx.lineTo(endX, endY);
-    gCtx.lineWidth = 4;
-    gCtx.strokeStyle = gDrawValues.borderColor;
-    gCtx.stroke();
-}
