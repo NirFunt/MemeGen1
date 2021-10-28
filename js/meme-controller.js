@@ -22,10 +22,30 @@ function renderKeyWords() {
    var keywords = getKeyWords();
    var strHTML = '';
    for (var word in keywords ) {
-      console.log(word);
-      strHTML+= `<li style="font-size:${keywords[word]*8}px;"> ${word}</li> `
+      // console.log(word);
+      strHTML+= `<li style="font-size:${keywords[word]*8}px;" onclick="onSort('${word}')"> ${word}</li> `
    }
    elKeyWordsContainer.innerHTML = strHTML;
+}
+
+function onSort (word) {
+   sortByWord (word);
+   renderGrid();
+}
+
+function onSearch () {
+   alert('not ready');
+}
+
+function goToGallery() {
+   resetSort();
+   renderGrid();
+   document.querySelector('.header2').style.display = 'flex';
+   document.querySelector('main').style.display = 'block';
+   document.querySelector('.my-info').style.display = 'flex';
+   document.querySelector('.canvas-btn-container').style.display = 'none';
+   onClear();
+   clearMeme();
 }
 
 

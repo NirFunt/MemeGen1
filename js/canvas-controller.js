@@ -150,19 +150,6 @@ function onSwitchLines() {
 }
 
 
-function onSearch () {
-    alert('not ready');
-}
-
-function goToGallery() {
-    document.querySelector('.header2').style.display = 'flex';
-    document.querySelector('main').style.display = 'block';
-    document.querySelector('.my-info').style.display = 'flex';
-    document.querySelector('.canvas-btn-container').style.display = 'none';
-    onClear();
-    clearMeme();
-}
-
 function onSetTextStroke() {
     getLine().isTextStroke = !getLine().isTextStroke;
     drawText();

@@ -90,6 +90,7 @@ main {
     gap: 30px;
     list-style-type:none;
     margin-right: 40px;
+    cursor: pointer;
 }
 
 main {

@@ -1,6 +1,7 @@
 'use strict'
 
-// var gKeywords = {'happy': 12,'funny puk': 1} objectCounter
+var gWords = ['sad', 'funny', 'crazy', 'animal', 'nice', 'cute', 'happy', 'bad'];
+
 var gKeywords = {
     sad: 1,
     funny: 3,
@@ -15,10 +16,11 @@ var gKeywords = {
 function getKeyWords() {
     return gKeywords;
 }
-// var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy', 'funny'] }];
 
 var gImgs = [];
 _createImages();
+
+var gSortedImgs = gImgs.slice();
 
 var gMeme = {
     selectedImgId: 0,
@@ -27,9 +29,18 @@ var gMeme = {
     ],
 }
 
+function sortByWord (word) {
+    gSortedImgs = gImgs.filter(img => img.keywords.includes(word));
+    // console.log(gSortedImgs);
+}
+
+function resetSort() {
+    gSortedImgs = gImgs.slice();
+    // console.log(gSortedImgs);
+}
 
 function getImages() {
-    return gImgs;
+    return gSortedImgs;
 }
 
 function getImageById(imageId) {
@@ -152,7 +163,13 @@ function alignRight() {
 
 function _createImages() {
     for (var i = 1; i <= 18; i++) {
-        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice', 'sad', 'animal', 'crazy']);
+        var words = gWords.slice();
+        words.splice(getRandomInt(0,words.length),1);
+        words.splice(getRandomInt(0,words.length),1);
+        words.splice(getRandomInt(0,words.length),1);
+        words.splice(getRandomInt(0,words.length),1);
+        var image = _createImage(i, 'img-square/' + i + '.jpg', words);
+        // console.log(image);
         gImgs.push(image);
     }
 }
