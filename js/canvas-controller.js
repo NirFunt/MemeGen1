@@ -59,7 +59,7 @@ function onUp() {
 }
 
 function drawText() {
-    onClear();
+    // onClear();
     drawImgFromlocal(getMemeImgId());
     var txt = document.querySelector('#text-input').value;
     if (getMeme().lines.length === 0) createLine(txt);
@@ -92,17 +92,6 @@ function onClear() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth;
-}
-
-function onImageClick(imageId) {
-    setMemeImgId(imageId)
-    drawImgFromlocal(imageId);
-    document.querySelector('.header2').style.display = 'none';
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('.my-info').style.display = 'none';
-    document.querySelector('.canvas-btn-container').style.display = 'flex';
-    resizeCanvas();
-    
 }
 
 function drawImgFromlocal(imageId) {

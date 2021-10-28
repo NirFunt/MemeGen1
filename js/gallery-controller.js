@@ -28,6 +28,17 @@ function renderKeyWords() {
    elKeyWordsContainer.innerHTML = strHTML;
 }
 
+
+function onImageClick(imageId) {
+   setMemeImgId(imageId)
+   drawImgFromlocal(imageId);
+   document.querySelector('.header2').style.display = 'none';
+   document.querySelector('main').style.display = 'none';
+   document.querySelector('.my-info').style.display = 'none';
+   document.querySelector('.canvas-btn-container').style.display = 'flex';
+   resizeCanvas();
+}
+
 function onSort (word) {
    sortByWord (word);
    renderGrid();
