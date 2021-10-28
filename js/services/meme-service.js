@@ -98,7 +98,7 @@ function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
         color,
         font,
         isTextStroke: false,
-        area : {x:txt.length*size + align.x, y:size},
+        area : {startX:50, endX : 400, startY: align.y, endY: align.y-50 },
         isMarked : false
     }
     // console.log(line.area);
@@ -109,7 +109,6 @@ function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
 function setText(txt) {
     var line = gMeme.lines[gMeme.selectedLineIdx];
     line.txt = txt;
-    line.area = {x:txt.length*line.size + line.align.x, y:line.size};
 }
 
 function setSize(num) {
