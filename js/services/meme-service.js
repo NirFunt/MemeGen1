@@ -98,7 +98,8 @@ function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
         color,
         font,
         isTextStroke: false,
-        area : {x:txt.length*size + align.x, y:size}
+        area : {x:txt.length*size + align.x, y:size},
+        isMarked : false
     }
     // console.log(line.area);
     gMeme.lines.push(line);
