@@ -31,10 +31,12 @@ function renderKeyWords() {
 function onSort (word) {
    sortByWord (word);
    renderGrid();
+   renderKeyWords();
 }
 
 function onSearch () {
-   alert('not ready');
+   var input = document.querySelector('#search-input').value;
+   onSort(input);
 }
 
 function goToGallery() {

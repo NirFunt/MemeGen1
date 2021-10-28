@@ -33,8 +33,10 @@ var gMeme = {
 }
 
 function sortByWord (word) {
+    if (!gWords.includes(word)) return;
     gSortedImgs = gImgs.filter(img => img.keywords.includes(word));
     // console.log(gSortedImgs);
+    gKeywords[word]++;
 }
 
 function resetSort() {
