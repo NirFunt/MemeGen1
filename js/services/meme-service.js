@@ -2,12 +2,19 @@
 
 // var gKeywords = {'happy': 12,'funny puk': 1} objectCounter
 var gKeywords = {
-    sad : 1,
-    funny : 3,
-    crazy : 5,
-    animal : 2,
+    sad: 1,
+    funny: 3,
+    crazy: 5,
+    animal: 2,
+    nice: 7,
+    cute:2,
+    happy : 3,
+    bad : 4
 }
 
+function getKeyWords() {
+    return gKeywords;
+}
 // var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy', 'funny'] }];
 
 var gImgs = [];
@@ -51,7 +58,7 @@ function setMemeImgId(selectedImgId) {
     gMeme.selectedImgId = selectedImgId;
 }
 
-function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
+function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
     var align = {};
     if (gMeme.lines.length === 0) {
         align.x = 250;
@@ -81,7 +88,7 @@ function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
 
 function setText(txt) {
     var line = gMeme.lines[gMeme.selectedLineIdx];
-        line.txt = txt;
+    line.txt = txt;
 }
 
 function setSize(num) {
@@ -98,7 +105,7 @@ function NextText() {
     createLine();
 }
 
-function setColor (color) {
+function setColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
@@ -111,10 +118,10 @@ function moveText(num) {
 
 function switchLines() {
     if (gMeme.selectedLineIdx === 0) {
-        gMeme.selectedLineIdx = gMeme.lines.length-1;
+        gMeme.selectedLineIdx = gMeme.lines.length - 1;
     } else gMeme.selectedLineIdx--;
     console.log(gMeme.selectedLineIdx);
- 
+
 }
 
 function clearMeme() {
@@ -126,9 +133,9 @@ function clearMeme() {
     };
 }
 
-function  removeLine() {
-        gMeme.lines.splice([gMeme.selectedLineIdx],1);
-        gMeme.selectedLineIdx--;
+function removeLine() {
+    gMeme.lines.splice([gMeme.selectedLineIdx], 1);
+    gMeme.selectedLineIdx--;
 }
 
 function alignLeft() {
@@ -145,7 +152,7 @@ function alignRight() {
 
 function _createImages() {
     for (var i = 1; i <= 18; i++) {
-        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice', 'sad', 'animal','crazy']);
+        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice', 'sad', 'animal', 'crazy']);
         gImgs.push(image);
     }
 }
