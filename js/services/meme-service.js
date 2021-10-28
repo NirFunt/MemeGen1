@@ -1,7 +1,12 @@
 'use strict'
 
 // var gKeywords = {'happy': 12,'funny puk': 1} objectCounter
-var gKeywords = {}
+var gKeywords = {
+    sad : 1,
+    funny : 3,
+    crazy : 5,
+    animal : 2,
+}
 
 // var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy', 'funny'] }];
 
@@ -53,7 +58,7 @@ function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
         align.y = 700;
     }
 
-    if (gMeme.lines.length === 2) {
+    if (gMeme.lines.length > 1) {
         align.x = 130;
         align.y = 350;
     }
@@ -100,9 +105,11 @@ function moveText(num) {
 }
 
 function switchLines() {
-    var temp  = gMeme.lines[0].align.y;
-    gMeme.lines[0].align.y = gMeme.lines[1].align.y
-    gMeme.lines[1].align.y = temp;
+    if (gMeme.selectedLineIdx === 0) {
+        gMeme.selectedLineIdx = gMeme.lines.length-1;
+    } else gMeme.selectedLineIdx--;
+    console.log(gMeme.selectedLineIdx);
+ 
 }
 
 function clearMeme() {
@@ -116,7 +123,7 @@ function clearMeme() {
 
 function _createImages() {
     for (var i = 1; i <= 18; i++) {
-        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice'])
+        var image = _createImage(i, 'img-square/' + i + '.jpg', ['happy', 'funny', 'nice', 'sad', 'animal','crazy']);
         gImgs.push(image);
     }
 }

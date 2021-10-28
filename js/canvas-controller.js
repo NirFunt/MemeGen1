@@ -143,7 +143,7 @@ function onGoDown() {
 
 function onSwitchLines() {
     switchLines();
-    drawText();
+    document.querySelector('#text-input').value = getMeme().lines[getMeme().selectedLineIdx].txt;
 }
 
 
