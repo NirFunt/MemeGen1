@@ -49,6 +49,7 @@ function onDown({ offsetX, offsetY }) {
 }
 
 function onMove(ev) {
+    // ev.preventDefault();
     console.log('move');
     checkCorr(ev);
 }
@@ -101,6 +102,8 @@ function onClear() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth;
+    drawImgFromlocal(getMemeImgId());
+    drawText();
 }
 
 function drawImgFromlocal(imageId) {
@@ -169,7 +172,21 @@ function onAlignRight() {
 }
 
 
-function checkCorr({ offsetX, offsetY }) {
+// function checkCorr({ offsetX, offsetY }) {
+function checkCorr(ev) {
+    // var clientX = ev.touches[0].clientX;
+    // var clientY = ev.touches[0].clientY;
+    // var x = ev.targetTouches[0].pageX
+    // var y = ev.targetTouches[0].pageY
+
+    ev.preventDefault();
+    var offsetX = ev.offsetX;
+    var offsetY = ev.offsetY;
+    // console.log(ev);
+    if (ev.type === 'touchmove') {
+         offsetX = ev.targetTouches[0].pageX;
+         offsetY = ev.targetTouches[0].pageY;
+    }
     console.log(offsetX, offsetY);
     var meme = getMeme();
     if (meme.lines.length === 0) return;

@@ -160,18 +160,14 @@ footer {
 }
 
 
-
-
-
 .canvas-btn-container {
     display: none;
     align-items: center;
     justify-content: space-evenly;
-    background-color: red;
+    /* background-color: red; */
     gap: 100px;
     margin:auto;
-    max-width: 1000px;
-    height: 70vh;
+    max-width: 400px;
 }
 
 .canvas-container {
@@ -345,6 +341,34 @@ footer {
         gap: 10px;
         list-style-type:none;
         cursor: pointer;
+    }
+
+    .canvas-btn-container {
+        flex-direction: column;
+        gap: 15px;
+        margin: 0 auto;
+
+    }
+
+    .canvas-container {
+        max-width: 500px;
+        max-height: 500px;
+        margin-right: 70px;
+    }
+
+    .btn-container {
+        display: grid;
+        max-width: 600px;
+        height: 500px;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .header1 {
+        /* margin-top:50px; */
+    }
+    footer {
+        /* margin-top: 630px; */
     }
 }
 
