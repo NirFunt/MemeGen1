@@ -48,4 +48,14 @@ function goToGallery() {
    clearMeme();
 }
 
+function onPagePrev() {
+   movePrev();
+   renderGrid();
+}
+
+function onPageNext() {
+   moveNext ();
+   renderGrid();
+}
+
 

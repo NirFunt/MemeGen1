@@ -13,6 +13,9 @@ var gKeywords = {
     bad : 4
 }
 
+const IMAGE_PER_PAGE = 9;
+var gPage = 0;
+
 function getKeyWords() {
     return gKeywords;
 }
@@ -40,7 +43,8 @@ function resetSort() {
 }
 
 function getImages() {
-    return gSortedImgs;
+    // return gSortedImgs;
+    return gSortedImgs.slice(gPage * IMAGE_PER_PAGE, gPage * IMAGE_PER_PAGE + IMAGE_PER_PAGE);
 }
 
 function getImageById(imageId) {
@@ -160,6 +164,20 @@ function alignCenter() {
 function alignRight() {
     gMeme.lines[gMeme.selectedLineIdx].align.x = 400;
 }
+
+
+
+
+function movePrev() {
+    if (gPage === 0) return;
+    gPage--;
+}
+
+function moveNext() {
+    if ((gPage + 1) * IMAGE_PER_PAGE >= gSortedImgs.length) return;
+    gPage++;
+}
+
 
 function _createImages() {
     for (var i = 1; i <= 18; i++) {
