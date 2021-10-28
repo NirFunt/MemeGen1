@@ -54,17 +54,17 @@ function setMemeImgId(selectedImgId) {
 function createLine(txt ='text', size = 30, color ='red', font = 'IMPACT') {
     var align = {};
     if (gMeme.lines.length === 0) {
-        align.x = 130;
+        align.x = 250;
         align.y = 50;
     }
     if (gMeme.lines.length === 1) {
-        align.x = 130;
-        align.y = 700;
+        align.x = 250;
+        align.y = 450;
     }
 
     if (gMeme.lines.length > 1) {
-        align.x = 130;
-        align.y = 350;
+        align.x = 250;
+        align.y = 250;
     }
 
     var line = {
@@ -129,6 +129,18 @@ function clearMeme() {
 function  removeLine() {
         gMeme.lines.splice([gMeme.selectedLineIdx],1);
         gMeme.selectedLineIdx--;
+}
+
+function alignLeft() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 50;
+}
+
+function alignCenter() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 250;
+}
+
+function alignRight() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 400;
 }
 
 function _createImages() {

@@ -145,20 +145,26 @@ footer {
 
 
 
-.canvas-container {
+.canvas-btn-container {
     display: none;
     align-items: center;
+    justify-content: space-evenly;
     background-color: red;
     gap: 100px;
     margin:auto;
-    margin-right: 200px;
+    max-width: 1000px;
+    height: 70vh;
+}
+
+.canvas-container {
+    max-width: 500px;
+    max-height: 500px;
+    background-color: blue;
+    margin-left: 50px;
 }
 
 .meme-canvas {
     background-color: gray;
-    width: 500px;
-    height: 500px;
-    margin: 20px 20px;
 }
 
 /* .btn-container {
@@ -170,9 +176,8 @@ footer {
 } */
 
 .btn-container {
-
     display: grid;
-    width: 300px;
+    max-width: 500px;
     height: 500px;
     grid-template-columns: repeat(5, minmax(60px,100px));
     grid-template-rows: repeat(7, minmax(60px,100px));
@@ -180,6 +185,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: green;
+    margin-right: 20px;
 }
 
 .btn-container div:nth-child(n) {
