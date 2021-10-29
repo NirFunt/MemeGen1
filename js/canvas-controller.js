@@ -8,9 +8,7 @@ var gDrawValues = {
     isClicked: false
 }
 
-var gPrevious = {};
-
-var gIsTextStroke = false;
+var gIsDragging = false;
 
 function initCanvas() {
     gElCanvas = document.querySelector('.meme-canvas');
@@ -41,10 +39,8 @@ function onColorPick() {
     drawText();
 }
 
-function onDown({ offsetX, offsetY }) {
+function onDown() {
     gDrawValues.isClicked = true;
-    gPrevious.prevX = offsetX;
-    gPrevious.prevY = offsetY;
     console.log('down')
 }
 
@@ -189,25 +185,33 @@ function checkCorr(ev) {
     }
     console.log(offsetX, offsetY);
     var meme = getMeme();
-    if (meme.lines.length === 0) return;
+    if (meme.lines.length === 0) return; // prevent error when there isnt such line
     grab(meme, 0, offsetX, offsetY);
-    if (meme.lines.length === 1) return;
+    if (meme.lines.length === 1) return; // prevent error when there isnt such line
     grab(meme, 1, offsetX, offsetY);
-    if (meme.lines.length === 2) return;
+    if (meme.lines.length === 2) return; // prevent error when there isnt such line
     grab(meme, 2, offsetX, offsetY);
+    if (meme.lines.length === 3) return; // prevent error when there isnt such line
+    grab(meme, 3, offsetX, offsetY);
+    // support dragging 4 lines
 }
 
 function grab(meme, num, offsetX, offsetY) {
-    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[num].align.y && offsetY > meme.lines[num].align.y - 25) {
+    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[num].align.y &&
+         offsetY > meme.lines[num].align.y - 25 && !gIsDragging) {
         gElCanvas.style.cursor = 'pointer';
         meme.lines[num].isMarked = true;
+        gIsDragging = true;
         if (gDrawValues.isClicked && meme.lines[num].isMarked) {
             gElCanvas.style.cursor = 'grab';
             meme.lines[num].align.x = offsetX;
             meme.lines[num].align.y = offsetY + 15;
             drawText();
         }
-    } else gElCanvas.style.cursor = 'default';
+    } else {
+        gElCanvas.style.cursor = 'default';
+        gIsDragging = false;
+    } 
 }
 
 
