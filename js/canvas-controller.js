@@ -39,9 +39,10 @@ function onColorPick() {
     drawText();
 }
 
-function onDown() {
+function onDown(ev) {
     gDrawValues.isClicked = true;
-    console.log('down')
+    console.log('down');
+    console.log(ev);
 }
 
 function onMove(ev) {
@@ -63,6 +64,7 @@ function onUp() {
 function drawText() {
     // onClear();
     drawImgFromlocal(getMemeImgId());
+    drawAllStickers();
     var txt = document.querySelector('#text-input').value;
     if (getMeme().lines.length === 0) createLine(txt);
 
@@ -108,6 +110,22 @@ function drawImgFromlocal(imageId) {
     img.src = image.url;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    }
+}
+
+function drawStickerFromlocal(stickerId,posX,posY) {
+    var img = new Image();
+    var sticker = getStickerById(stickerId);
+    img.src = sticker.url;
+    img.onload = () => {
+        gCtx.drawImage(img, posX, posY,  100,  100);
+    }
+}
+
+function drawAllStickers() {
+    var meme = getMeme();
+    for (var i = 0; i <meme.stickers.length; i++) {
+        drawStickerFromlocal(meme.stickers[i].id,meme.stickers[i].posX,meme.stickers[i].posY);
     }
 }
 

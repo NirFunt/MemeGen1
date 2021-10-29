@@ -4,6 +4,7 @@ function init () {
     renderGrid();
     renderKeyWords();
     initCanvas();
+    renderStickers ();
 }
 
 function renderGrid() {
@@ -34,6 +35,18 @@ function renderKeyWords() {
    keywords2.push(`<li onclick="showMoreKeyWords()"> More </li>`);
    elKeyWordsContainer2.innerHTML = keywords2.join('');
 }
+
+function renderStickers () {
+   var stickers = getStickers();
+   // console.log(stickers) 
+   var elStickers = document.querySelector('.stickers');
+   var htmlStrArray = stickers.map(sticker => {
+      return `<img src="${sticker.url}" id="${sticker.id}" onmousedown="onStickerClick('${sticker.id}')">`;
+   })
+   // console.log(htmlStrArray);
+   elStickers.innerHTML = htmlStrArray.join('');
+}
+
 
 function onImageClick(imageId) {
    setMemeImgId(imageId)
@@ -95,5 +108,11 @@ function onUploadLocalImage() {
 function closeLoadImageFormModal() {
    document.querySelector('.load-image-form').style.display = 'none';
 }
+
+function onStickerClick (stickerId) {
+   console.log(stickerId);
+   
+}
+
 
 

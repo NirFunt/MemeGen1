@@ -5,6 +5,7 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
     ],
+    stickers : [{id:1,posX:50,posY:50},{id:2,posX:200,posY:200}],
 }
 
 function getMeme() {

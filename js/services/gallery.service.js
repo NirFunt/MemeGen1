@@ -1,7 +1,7 @@
 'use strict'
 
 var gImgs = [];
-
+var gStickers = [];
 var gWords = ['sad', 'funny', 'crazy', 'animal', 'nice', 'cute', 'happy', 'bad'];
 
 var gImageCounter = 18;
@@ -21,6 +21,7 @@ const IMAGE_PER_PAGE = 9;
 var gPage = 0;
 
 _createImages();
+_createStickers();
 _setgKeyWords();
 
 var gSortedImgs = gImgs.slice();
@@ -59,6 +60,10 @@ function getImages() {
     return gSortedImgs.slice(gPage * IMAGE_PER_PAGE, gPage * IMAGE_PER_PAGE + IMAGE_PER_PAGE);
 }
 
+function getStickers() {
+    return gStickers.slice(0,3);
+}
+
 function getImageById(imageId) {
     var image = gImgs.find(img => { return img.id === +imageId });
     return image;
@@ -83,6 +88,10 @@ function uploadLocalImageFile (imageFakePath,inputKeyWords) {
     _setgKeyWords();
 }
 
+function getStickerById (stickerId) {
+    var sticker = gStickers.find(sticker => { return sticker.id === +stickerId });
+    return sticker;
+}
 
 function _createImages() {
     for (var i = 1; i <= 18; i++) {
@@ -102,4 +111,18 @@ function _createImage(id, url, keywords) {
         keywords
     }
     gImgs.push(image);
+}
+
+function _createStickers() {
+    for (var i = 1; i <= 5; i++) {
+        _createSticker(i, 'stickers/' + i + '.png');
+    }
+}
+
+function _createSticker(id, url) {
+    var sticker = {
+        id,
+        url
+    }
+    gStickers.push(sticker);
 }
