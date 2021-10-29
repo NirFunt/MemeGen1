@@ -93,6 +93,16 @@ function onPageNext() {
    renderGrid();
 }
 
+function onMoveStickerPrev () {
+   moveStickerPrev();
+   renderStickers();
+}
+
+function onMoveStickerNext () {
+   moveStickerNext();
+   renderStickers()
+}
+
 function onOpenUploadImageModal () {
    document.querySelector('.load-image-form').style.display = 'flex';
 }

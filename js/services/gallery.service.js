@@ -20,6 +20,9 @@ var gKeywords = {
 const IMAGE_PER_PAGE = 9;
 var gPage = 0;
 
+const STICKER_PER_PAGE = 3;
+var gStickerPage = 0;
+
 _createImages();
 _createStickers();
 _setgKeyWords();
@@ -61,7 +64,7 @@ function getImages() {
 }
 
 function getStickers() {
-    return gStickers.slice(0,3);
+    return gStickers.slice(gStickerPage*STICKER_PER_PAGE,gStickerPage*STICKER_PER_PAGE + STICKER_PER_PAGE);
 }
 
 function getImageById(imageId) {
@@ -78,6 +81,16 @@ function movePrev() {
 function moveNext() {
     if ((gPage + 1) * IMAGE_PER_PAGE >= gSortedImgs.length) return;
     gPage++;
+}
+
+function moveStickerPrev() {
+    if (gStickerPage === 0) return;
+    gStickerPage--;
+}
+
+function moveStickerNext() {
+    if ((gStickerPage + 1) * STICKER_PER_PAGE >= gStickers.length) return;
+    gStickerPage++;
 }
 
 function uploadLocalImageFile (imageFakePath,inputKeyWords) {
@@ -114,7 +127,7 @@ function _createImage(id, url, keywords) {
 }
 
 function _createStickers() {
-    for (var i = 1; i <= 5; i++) {
+    for (var i = 1; i <= 12; i++) {
         _createSticker(i, 'stickers/' + i + '.png');
     }
 }
