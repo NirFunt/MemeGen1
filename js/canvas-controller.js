@@ -49,14 +49,16 @@ function onMove(ev) {
     // ev.preventDefault();
     console.log('move');
     checkCorr(ev);
+  
 }
 
-function onUp() {
+function onUp(ev) {
     gDrawValues.isClicked = false;
     var lines = getMeme().lines;
     for (var i = 0; i < lines.length; i++) {
         lines[i].isMarked = false;
     }
+    dealWithSteaker(ev);
     console.log('up')
     drawText();
 }
@@ -126,6 +128,13 @@ function drawAllStickers() {
     var meme = getMeme();
     for (var i = 0; i <meme.stickers.length; i++) {
         drawStickerFromlocal(meme.stickers[i].id,meme.stickers[i].posX,meme.stickers[i].posY);
+    }
+}
+
+function dealWithSteaker ({offsetX,offsetY}) {
+    if (gStickerDrag) {
+       addSticker(gStickerPicked,offsetX,offsetY);
+       gStickerDrag = false;
     }
 }
 

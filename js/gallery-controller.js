@@ -1,5 +1,8 @@
 'use strict'
 
+var gStickerDrag = false;
+var gStickerPicked;
+
 function init () {
     renderGrid();
     renderKeyWords();
@@ -111,7 +114,8 @@ function closeLoadImageFormModal() {
 
 function onStickerClick (stickerId) {
    console.log(stickerId);
-   
+   gStickerPicked = stickerId;
+   gStickerDrag = true;
 }
 
 

@@ -124,3 +124,12 @@ function alignRight() {
     gMeme.lines[gMeme.selectedLineIdx].align.x = 400;
 }
 
+
+function addSticker (id,posX,posY) {
+    var sticker = {
+        id,
+        posX,
+        posY
+    }
+    gMeme.stickers.push(sticker);
+}
