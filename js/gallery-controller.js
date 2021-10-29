@@ -35,7 +35,6 @@ function renderKeyWords() {
    elKeyWordsContainer2.innerHTML = keywords2.join('');
 }
 
-
 function onImageClick(imageId) {
    setMemeImgId(imageId)
    drawImgFromlocal(imageId);
@@ -76,6 +75,27 @@ function onPagePrev() {
 function onPageNext() {
    moveNext ();
    renderGrid();
+}
+
+function onOpenUploadImageModal () {
+   document.querySelector('.load-image-form').style.display = 'flex';
+}
+
+function onUploadLocalImage() {
+   var imageFile = document.querySelector('#image-input').value;
+   var inputKeyWords = document.querySelector('#key-words-input').value;
+   console.log(imageFile,inputKeyWords);
+
+   uploadLocalImageFile(imageFile,inputKeyWords);
+
+   document.querySelector('.load-image-form').style.display = 'none';
+   
+   renderGrid();
+   renderKeyWords();
+}
+
+function closeLoadImageFormModal() {
+   document.querySelector('.load-image-form').style.display = 'none';
 }
 
 

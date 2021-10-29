@@ -124,6 +124,29 @@ main {
     padding: 15px 15px;
 }
 
+.load-image-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position:fixed;
+    max-height: 600px;
+    top: 40vh;
+    left: 40vw;
+    gap: 10px;
+    background-image: url(../img-square/2.jpg);
+    padding: 10px 50px 30px 50px;
+    display: none;
+}
+
+.load-image-form button,input {
+    background-color: cornsilk;
+    border-radius: 30px;
+    width: 25vw;
+    border: 2px solid pink;
+    font-size: 1.5rem;
+}
+
+
 .my-info {
     display: flex;
     justify-content: center;
