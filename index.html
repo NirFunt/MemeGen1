@@ -87,12 +87,19 @@
             <div><button>Go Right</button></div>
 
             <div><button><a href="#" onclick="onSave(this)" download="">Save</a></button></div>
-            <div><button onclick="onUploadImage()">UPLOAD&SHARE</button></div>
+            <div><button onclick="onOpenShareLoadModal()">LOAD&UPLOAD&SHARE</button></div>
            
+        </section>
+
+        <section class="share-load-modal">
+            <h2>Load Share Upload</h2>
+            <input type="file" class="file-input btn" name="LoadImage" onchange="loadImgToCanvas(event)" />
+
+            <button onclick="onUploadImage()">Share&Upload</button>
+            <button>Close</button>
             <div class="user-msg"></div>
             <div class="share-container"></div>
         </section>
-
 
     </section>
 

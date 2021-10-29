@@ -25,7 +25,7 @@ function renderKeyWords() {
    var strHTML = '';
 
    for (var word in keywords ) {
-      var liHTML = `<li style="font-size:${keywords[word]*8}px;" onclick="onSort('${word}')"> ${word}</li> `
+      var liHTML = `<li style="font-size:${keywords[word]*3}px;" onclick="onSort('${word}')"> ${word}</li> `
       strHTML += liHTML;
       keywords2.push(liHTML);
    }
@@ -82,17 +82,15 @@ function onOpenUploadImageModal () {
 }
 
 function onUploadLocalImage() {
-   var imageFile = document.querySelector('#image-input').value;
+   var imageFakePath = document.querySelector('#image-input').value;
    var inputKeyWords = document.querySelector('#key-words-input').value;
-   console.log(imageFile,inputKeyWords);
-
-   uploadLocalImageFile(imageFile,inputKeyWords);
-
+   // console.log(imageFakePath,inputKeyWords);
+   uploadLocalImageFile(imageFakePath,inputKeyWords);
    document.querySelector('.load-image-form').style.display = 'none';
-   
    renderGrid();
    renderKeyWords();
 }
+
 
 function closeLoadImageFormModal() {
    document.querySelector('.load-image-form').style.display = 'none';

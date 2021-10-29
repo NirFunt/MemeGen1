@@ -1,31 +1,46 @@
 'use strict'
 
+var gImgs = [];
+
 var gWords = ['sad', 'funny', 'crazy', 'animal', 'nice', 'cute', 'happy', 'bad'];
 
 var gImageCounter = 18;
 
 var gKeywords = {
-    sad: 1,
-    funny: 3,
-    crazy: 5,
-    animal: 2,
-    nice: 7,
-    cute:2,
-    happy : 3,
-    bad : 4
+    // sad: 1,
+    // funny: 3,
+    // crazy: 5,
+    // animal: 2,
+    // nice: 7,
+    // cute:2,
+    // happy : 3,
+    // bad : 4
 }
 
 const IMAGE_PER_PAGE = 9;
 var gPage = 0;
 
+_createImages();
+_setgKeyWords();
+
+var gSortedImgs = gImgs.slice();
+
+
+
+function _setgKeyWords () {
+    for (var i = 0; i < gImgs.length; i++) {
+        for (var j = 0; j < gImgs[i].keywords.length; j++) {
+            // console.log(gImgs[i].keywords[j]);
+            if (gKeywords[gImgs[i].keywords[j]]) gKeywords[gImgs[i].keywords[j]]++;
+            else gKeywords[gImgs[i].keywords[j]] = 1;
+        }
+    }
+}
+
 function getKeyWords() {
     return gKeywords;
 }
 
-var gImgs = [];
-_createImages();
-
-var gSortedImgs = gImgs.slice();
 
 function sortByWord (word) {
     if (!gWords.includes(word)) return;
@@ -60,9 +75,12 @@ function moveNext() {
     gPage++;
 }
 
-function uploadLocalImageFile (imageFile,inputKeyWords) {
-    _createImage(+gImageCounter, imageFile,inputKeyWords);
-    // update keywords
+function uploadLocalImageFile (imageFakePath,inputKeyWords) {
+    var imageNameArr = imageFakePath.split('\\');
+    var url = 'img-to-load/' + imageNameArr[2];
+    var words = inputKeyWords.split(' ');
+    _createImage(++gImageCounter, url,words);
+    _setgKeyWords();
 }
 
 

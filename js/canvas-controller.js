@@ -180,8 +180,8 @@ function checkCorr(ev) {
     var offsetY = ev.offsetY;
     // console.log(ev);
     if (ev.type === 'touchmove') {
-         offsetX = ev.targetTouches[0].pageX;
-         offsetY = ev.targetTouches[0].pageY;
+        offsetX = ev.targetTouches[0].pageX;
+        offsetY = ev.targetTouches[0].pageY;
     }
     console.log(offsetX, offsetY);
     var meme = getMeme();
@@ -198,7 +198,7 @@ function checkCorr(ev) {
 
 function grab(meme, num, offsetX, offsetY) {
     if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[num].align.y &&
-         offsetY > meme.lines[num].align.y - 25 && !gIsDragging) {
+        offsetY > meme.lines[num].align.y - 25 && !gIsDragging) {
         gElCanvas.style.cursor = 'pointer';
         meme.lines[num].isMarked = true;
         gIsDragging = true;
@@ -211,10 +211,31 @@ function grab(meme, num, offsetX, offsetY) {
     } else {
         gElCanvas.style.cursor = 'default';
         gIsDragging = false;
-    } 
+    }
 }
 
 
+
+function onOpenShareLoadModal() {
+    document.querySelector('.share-load-modal').style.display = 'flex';
+}
+
+function loadImgToCanvas(ev) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        img.src = event.target.result;
+        // console.log(event.target.result);
+        // console.log(img);
+        _createImage (100,img.src,['nice','cute']);
+        setMemeImgId(100);  
+        // id = 100 is for one loaded image, another loaded image would overwrite it
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+    // console.log(ev.target.files[0]);
+    document.querySelector('.share-load-modal').style.display = 'none';
+    setTimeout(resizeCanvas,100);
+}
 
 function onSave(elLink) {
     const data = gElCanvas.toDataURL();
