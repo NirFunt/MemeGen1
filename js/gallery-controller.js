@@ -1,23 +1,25 @@
 'use strict'
 
+//VARABILES SECTION//
 var gStickerDrag = false;
 var gStickerPicked;
 
-function init () {
-    renderGrid();
-    renderKeyWords();
-    initCanvas();
-    renderStickers ();
+//SETUP SECTION//
+function init() {
+   renderGrid();
+   renderKeyWords();
+   initCanvas();
+   renderStickers();
 }
 
+//RENDER SECTION//
 function renderGrid() {
-   var images = getImages(); 
+   var images = getImages();
    var elGalleryContainer = document.querySelector('.gallery-container');
-
    var htmlStrArray = images.map(image => {
       return `<img src="${image.url}" class="square-img" id="${image.id}" onclick="onImageClick('${image.id}')">`;
    })
-//    console.log(htmlStrArray);
+      // console.log(htmlStrArray);
    elGalleryContainer.innerHTML = htmlStrArray.join('');
 }
 
@@ -28,8 +30,8 @@ function renderKeyWords() {
    var keywords2 = [];
    var strHTML = '';
 
-   for (var word in keywords ) {
-      var liHTML = `<li style="font-size:${keywords[word]*3}px;" onclick="onSort('${word}')"> ${word}</li> `
+   for (var word in keywords) {
+      var liHTML = `<li style="font-size:${keywords[word] * 3}px;" onclick="onSort('${word}')"> ${word}</li> `
       strHTML += liHTML;
       keywords2.push(liHTML);
    }
@@ -39,7 +41,7 @@ function renderKeyWords() {
    elKeyWordsContainer2.innerHTML = keywords2.join('');
 }
 
-function renderStickers () {
+function renderStickers() {
    var stickers = getStickers();
    // console.log(stickers) 
    var elStickers = document.querySelector('.stickers');
@@ -50,7 +52,7 @@ function renderStickers () {
    elStickers.innerHTML = htmlStrArray.join('');
 }
 
-
+//IMAGE CLICK, SORT AND SERARCH SECTION//
 function onImageClick(imageId) {
    setMemeImgId(imageId)
    drawImgFromlocal(imageId);
@@ -61,15 +63,37 @@ function onImageClick(imageId) {
    resizeCanvas();
 }
 
-function onSort (word) {
-   sortByWord (word);
+function onSort(word) {
+   sortByWord(word);
    renderGrid();
    renderKeyWords();
 }
 
-function onSearch () {
+function onSearch() {
    var input = document.querySelector('#search-input').value;
    onSort(input);
+}
+
+
+//NAVIGATION SECTION//
+function onPagePrev() {
+   movePrev();
+   renderGrid();
+}
+
+function onPageNext() {
+   moveNext();
+   renderGrid();
+}
+
+function onMoveStickerPrev() {
+   moveStickerPrev();
+   renderStickers();
+}
+
+function onMoveStickerNext() {
+   moveStickerNext();
+   renderStickers()
 }
 
 function goToGallery() {
@@ -83,46 +107,26 @@ function goToGallery() {
    clearMeme();
 }
 
-function onPagePrev() {
-   movePrev();
-   renderGrid();
-}
-
-function onPageNext() {
-   moveNext ();
-   renderGrid();
-}
-
-function onMoveStickerPrev () {
-   moveStickerPrev();
-   renderStickers();
-}
-
-function onMoveStickerNext () {
-   moveStickerNext();
-   renderStickers()
-}
-
-function onOpenUploadImageModal () {
+function onOpenUploadImageModal() {
    document.querySelector('.load-image-form').style.display = 'flex';
 }
-
-function onUploadLocalImage() {
-   var imageFakePath = document.querySelector('#image-input').value;
-   var inputKeyWords = document.querySelector('#key-words-input').value;
-   // console.log(imageFakePath,inputKeyWords);
-   uploadLocalImageFile(imageFakePath,inputKeyWords);
-   document.querySelector('.load-image-form').style.display = 'none';
-   renderGrid();
-   renderKeyWords();
-}
-
 
 function closeLoadImageFormModal() {
    document.querySelector('.load-image-form').style.display = 'none';
 }
 
-function onStickerClick (stickerId) {
+//MORE FUNCTIONS SECTION//
+function onUploadLocalImage() {
+   var imageFakePath = document.querySelector('#image-input').value;
+   var inputKeyWords = document.querySelector('#key-words-input').value;
+   // console.log(imageFakePath,inputKeyWords);
+   uploadLocalImageFile(imageFakePath, inputKeyWords);
+   document.querySelector('.load-image-form').style.display = 'none';
+   renderGrid();
+   renderKeyWords();
+}
+
+function onStickerClick(stickerId) {
    console.log(stickerId);
    gStickerPicked = stickerId;
    gStickerDrag = true;

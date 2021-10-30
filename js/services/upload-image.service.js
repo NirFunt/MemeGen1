@@ -3,7 +3,6 @@
 function uploadImg() {
     const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
 
-    // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         document.querySelector('.user-msg').innerText = `Uploaded Link: ${uploadedImgUrl}`
@@ -17,7 +16,6 @@ function uploadImg() {
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
-
     const formData = new FormData();
     formData.append('img', imgDataUrl)
 
@@ -25,12 +23,12 @@ function doUploadImg(imgDataUrl, onSuccess) {
         method: 'POST',
         body: formData
     })
-    .then(res => res.text())
-    .then((url)=>{
-        console.log('Got back live url:', url);
-        onSuccess(url)
-    })
-    .catch((err) => {
-        console.error(err)
-    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
 }

@@ -10,7 +10,7 @@
 </head>
 
 <body onload="init()">
-
+<!-- HEADERS  -->
     <header class="header1">
         <div class="logo"><img src="ICONS/LOGO.png"></div>
         <ul class="header-links">
@@ -25,10 +25,11 @@
             <input id="search-input" placeholder="Enter search keyword">
             <img src="ICONS/search-icon.png" onclick="onSearch()">
         </div>
-            <ul class="key-words-list"></ul>
-            <ul class="key-words-list2"></ul>
+        <ul class="key-words-list"></ul>
+        <ul class="key-words-list2"></ul>
     </header>
 
+<!-- MAIN LAYOUT AND IMAGES GRID  -->
     <main class="main-layout">
         <section class="gallery-container main-layout"></section>
 
@@ -48,16 +49,18 @@
         </section>
     </main>
 
-
+<!-- CANVAS AND BUTTONS CONTAINER  -->
     <section class="canvas-btn-container">
+         <!-- CANVAS CONTAINER  -->
         <div class="canvas-container">
             <canvas class="meme-canvas" width="500" height="500"></canvas>
         </div>
-       
-        <section class="btn-container">
-           <div><input type="text" id="text-input" name="text-input" onkeyup="drawText()"></div> 
 
-           <div> <img onclick="onSwitchLines()" src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></div>
+        <!-- ALL CANVAS BUTTONS GRID  -->
+        <section class="btn-container">
+            <div><input type="text" id="text-input" name="text-input" onkeyup="drawAllLinesAndImages()"></div>
+
+            <div> <img onclick="onSwitchLines()" src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></div>
             <div><img onclick="onNextText()" src="ICONS/add.png"></div>
             <div><img onclick="onRemoveLine()" src="ICONS/trash.png"></div>
 
@@ -71,43 +74,37 @@
             <div><img onclick="onGoDown()" src="ICONS/down-arrrow.png"></div>
 
             <div><select onchange="onFontSelect(this.value)">
-                <option value="Helvetica">Helvetica</option>
-                <option value="Arial">Arial</option>
-                <option value="IMPACT">IMPACT</option>
-                <option value="Sans-Serif">Sans-Serif</option>
-                <option value="Helvetica Neue">Helvetica Neue</option>
-            </select></div>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Arial">Arial</option>
+                    <option value="IMPACT">IMPACT</option>
+                    <option value="Sans-Serif">Sans-Serif</option>
+                    <option value="Helvetica Neue">Helvetica Neue</option>
+                </select></div>
             <div><img onclick="onSetTextStroke()" src="ICONS/text stroke.png"></div>
             <div><input type="color" name="selected-color" id="selected-color" onchange="onColorPick()">
                 <img src="ICONS/paint-board-and-brush.png">
             </div>
-            
+
             <div onclick="onMoveStickerPrev()"><button>🤛</button></div>
-            <div class="stickers">
-            <!-- <img src="stickers/1.png">
-            <img src="stickers/2.png">
-            <img src="stickers/3.png"> -->
-            </div>
+            <div class="stickers"></div>
             <div onclick="onMoveStickerNext()"><button>🤜</button></div>
 
             <div><button><a href="#" onclick="onSave(this)" download="">Save</a></button></div>
             <div><button onclick="onOpenShareLoadModal()">LOAD&UPLOAD&SHARE</button></div>
-           
-        </section>
 
+        </section>
+<!-- SHARE AND LOAD MODAL  -->
         <section class="share-load-modal">
             <h2>Load Share Upload</h2>
             <input type="file" class="file-input btn" name="LoadImage" onchange="loadImgToCanvas(event)" />
 
             <button onclick="onUploadImage()">Share&Upload</button>
-            <button>Close</button>
+            <button onclick="closeShareModal()">Close</button>
             <div class="user-msg"></div>
             <div class="share-container"></div>
         </section>
-
     </section>
-
-
+<!-- MAIN INFO SECTION  -->
     <section class="my-info main-layout">
         <div class="my-image"><img src="img-square/12.jpg"></div>
 
@@ -121,25 +118,18 @@
             </div>
         </div>
     </section>
-
-
+<!-- FOOTER SECTION -->
     <footer>
         <div class="logo"><img src="ICONS/LOGO.png"></div>
         <p class="copy-rights"> all rights recived 2019</p>
     </footer>
 
-    <script src="js/services/utils.serice.js"></script>
+    <script src="js/services/utils.service.js"></script>
     <script src="js/services/upload-image.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
-    <script src="js/services/meme-service.js"></script>
+    <script src="js/services/meme.service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/canvas-controller.js"></script>
-
-
-
-
-
-
 
 </body>
 

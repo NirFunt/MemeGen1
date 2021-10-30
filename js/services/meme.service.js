@@ -1,14 +1,15 @@
 'use strict'
 
+//VARABILES SECTION//
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
     ],
-    // stickers : [{id:1,posX:50,posY:50},{id:2,posX:200,posY:200}],
-    stickers : []
+    stickers: []
 }
 
+//GETTERS SECTION//
 function getMeme() {
     return gMeme;
 }
@@ -21,6 +22,7 @@ function getLine() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
+//SETTERS SECTION//
 function setMemeIdx(selectedImgId, selectedLineIdx) {
     gMeme.selectedImgId = selectedImgId;
     gMeme.selectedLineIdx = selectedLineIdx;
@@ -28,6 +30,78 @@ function setMemeIdx(selectedImgId, selectedLineIdx) {
 
 function setMemeImgId(selectedImgId) {
     gMeme.selectedImgId = selectedImgId;
+}
+
+function setText(txt) {
+    var line = gMeme.lines[gMeme.selectedLineIdx];
+    line.txt = txt;
+}
+
+function setSize(num) {
+    console.log(gMeme.selectedLineIdx)
+    gMeme.lines[gMeme.selectedLineIdx].size += num;
+}
+
+function setFont(fontType) {
+    gMeme.lines[gMeme.selectedLineIdx].font = fontType;
+}
+
+function setColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function addSticker(id, posX, posY) {
+    var sticker = {
+        id,
+        posX,
+        posY
+    }
+    gMeme.stickers.push(sticker);
+}
+
+//MORE FUNCTIONS//
+function NextText() {
+    gMeme.selectedLineIdx++;
+    createLine();
+}
+
+function switchLines() {
+    if (gMeme.selectedLineIdx === 0) {
+        gMeme.selectedLineIdx = gMeme.lines.length - 1;
+    } else gMeme.selectedLineIdx--;
+}
+
+function removeLine() {
+    gMeme.lines.splice([gMeme.selectedLineIdx], 1);
+    gMeme.selectedLineIdx--;
+}
+
+//TEXT MOVEMENT SECTION//
+function moveText(num) {
+    gMeme.lines[gMeme.selectedLineIdx].align.y += num;
+}
+
+function alignLeft() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 50;
+}
+
+function alignCenter() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 250;
+}
+
+function alignRight() {
+    gMeme.lines[gMeme.selectedLineIdx].align.x = 400;
+}
+
+// CLEAR AND CREATE SECTION//
+function clearMeme() {
+    gMeme = {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [
+        ],
+        stickers: []
+    }
 }
 
 function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
@@ -53,84 +127,10 @@ function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
         color,
         font,
         isTextStroke: false,
-        area : {startX:50, endX : 400, startY: align.y, endY: align.y-50 },
-        isMarked : false
+        area: { startX: 50, endX: 400, startY: align.y, endY: align.y - 50 },
+        isMarked: false
     }
     // console.log(line.area);
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
-}
-
-function setText(txt) {
-    var line = gMeme.lines[gMeme.selectedLineIdx];
-    line.txt = txt;
-}
-
-function setSize(num) {
-    console.log(gMeme.selectedLineIdx)
-    gMeme.lines[gMeme.selectedLineIdx].size += num;
-}
-
-function setFont(fontType) {
-    gMeme.lines[gMeme.selectedLineIdx].font = fontType;
-}
-
-function NextText() {
-    gMeme.selectedLineIdx++;
-    createLine();
-}
-
-function setColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].color = color;
-}
-
-function moveText(num) {
-    console.log(num);
-    console.log(gMeme.lines[gMeme.selectedLineIdx].align.y);
-    gMeme.lines[gMeme.selectedLineIdx].align.y += num;
-    console.log(gMeme.lines[gMeme.selectedLineIdx].align.y);
-}
-
-function switchLines() {
-    if (gMeme.selectedLineIdx === 0) {
-        gMeme.selectedLineIdx = gMeme.lines.length - 1;
-    } else gMeme.selectedLineIdx--;
-    console.log(gMeme.selectedLineIdx);
-
-}
-
-function clearMeme() {
-    gMeme = {
-        selectedImgId: 0,
-        selectedLineIdx: 0,
-        lines: [
-        ]
-    };
-}
-
-function removeLine() {
-    gMeme.lines.splice([gMeme.selectedLineIdx], 1);
-    gMeme.selectedLineIdx--;
-}
-
-function alignLeft() {
-    gMeme.lines[gMeme.selectedLineIdx].align.x = 50;
-}
-
-function alignCenter() {
-    gMeme.lines[gMeme.selectedLineIdx].align.x = 250;
-}
-
-function alignRight() {
-    gMeme.lines[gMeme.selectedLineIdx].align.x = 400;
-}
-
-
-function addSticker (id,posX,posY) {
-    var sticker = {
-        id,
-        posX,
-        posY
-    }
-    gMeme.stickers.push(sticker);
 }
