@@ -31,6 +31,10 @@ function addEventListeners() {
 
     window.addEventListener('resize', () => {
         resizeCanvas();
+        // on the cavnas page, there is not problem to resize window, canvas redraw itself.
+        // but on the gallery page there is a problem to resize window, it makes canvas width = 0, maybe because canvas is a display 'none'. this is very strange behavior.
+        // console.log(gElCanvas);
+        gElCanvas.width = 500;
     });
 }
 
