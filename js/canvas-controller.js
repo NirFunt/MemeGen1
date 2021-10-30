@@ -277,3 +277,8 @@ function closeShareModal() {
     document.querySelector('.share-load-modal').style.display = 'none';
 }
 
+function onStoreMeme() {
+    storeMeme();
+    alert('Meme was stored to My Memes');
+}
+

@@ -9,6 +9,8 @@ var gMeme = {
     stickers: []
 }
 
+var gMemes = [];
+
 //GETTERS SECTION//
 function getMeme() {
     return gMeme;
@@ -133,4 +135,19 @@ function createLine(txt = 'text', size = 30, color = 'red', font = 'IMPACT') {
     // console.log(line.area);
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+
+function storeMeme () {
+    if (gMemes.includes(gMeme)) {
+        var index = gMemes.findIndex(meme => meme === gMeme);
+        gMemes[index] = gMeme;
+    } else gMemes.push(gMeme);
+}
+
+function getMyMemes() {
+    return gMemes;
+}
+
+function setMemeFromMyMeme (index) {
+    gMeme = gMemes[index];
 }

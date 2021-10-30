@@ -52,6 +52,17 @@ function renderStickers() {
    elStickers.innerHTML = htmlStrArray.join('');
 }
 
+function renderMyMemes() {
+   var images = getImages();
+   var memes = getMyMemes();
+   var elGalleryContainer = document.querySelector('.gallery-container');
+   var htmlStrArray = memes.map( (meme,index) => {
+      return `<img src="${images[meme.selectedImgId-1].url}" class="square-img" id="${index}" onclick="onMemeClick('${index}')">`;
+   })
+      // console.log(htmlStrArray);
+   elGalleryContainer.innerHTML = htmlStrArray.join('');
+}
+
 //IMAGE CLICK, SORT AND SERARCH SECTION//
 function onImageClick(imageId) {
    setMemeImgId(imageId)
@@ -63,6 +74,13 @@ function onImageClick(imageId) {
       document.querySelector('.canvas-btn-container').style.display = 'flex';
       resizeCanvas();
    },100)
+}
+
+function onMemeClick (memeId) {
+   setMemeFromMyMeme (memeId);
+   drawAllLinesAndImages();
+   document.querySelector('main').style.display = 'none';
+   document.querySelector('.canvas-btn-container').style.display = 'flex';
 }
 
 function onSort(word) {
@@ -98,6 +116,7 @@ function onMoveStickerNext() {
    renderStickers()
 }
 
+// GO TO FUNCTIONS SECTION//
 function goToGallery() {
    resetSort();
    renderGrid();
@@ -108,6 +127,16 @@ function goToGallery() {
    onClear();
    clearMeme();
 }
+
+function goToMemes() {
+   document.querySelector('main').style.display = 'block';
+   document.querySelector('.canvas-btn-container').style.display = 'none';
+   renderMyMemes();
+   onClear();
+   clearMeme();
+}
+
+
 
 function onOpenUploadImageModal() {
    document.querySelector('.load-image-form').style.display = 'flex';
