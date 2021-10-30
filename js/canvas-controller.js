@@ -92,18 +92,19 @@ function onDown(ev) {
     // ev.preventDefault();
     gDrawValues.isClicked = true;
     console.log('down');
-    console.log(ev);
+    // console.log(ev);
 }
 
 function onMove(ev) {
     // ev.preventDefault();
-    console.log('move');
+    // console.log('move');
     handleMouseEventsOnCanvas(ev);
 }
 
 function onUp(ev) {
     // ev.preventDefault();
     gDrawValues.isClicked = false;
+    
     var lines = getMeme().lines;
     for (var i = 0; i < lines.length; i++) {
         lines[i].isMarked = false;
