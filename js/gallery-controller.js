@@ -124,6 +124,7 @@ function goToGallery() {
    document.querySelector('main').style.display = 'block';
    document.querySelector('.my-info').style.display = 'flex';
    document.querySelector('.canvas-btn-container').style.display = 'none';
+   document.querySelector('.paging').style.display = 'flex';
    onClear();
    clearMeme();
 }
@@ -132,6 +133,8 @@ function goToMemes() {
    document.querySelector('main').style.display = 'block';
    document.querySelector('.canvas-btn-container').style.display = 'none';
    document.querySelector('.my-info').style.display = 'none';
+   document.querySelector('.header2').style.display = 'none';
+   document.querySelector('.paging').style.display = 'none';
    renderMyMemes();
    onClear();
    clearMeme();
