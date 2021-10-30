@@ -56,11 +56,13 @@ function renderStickers() {
 function onImageClick(imageId) {
    setMemeImgId(imageId)
    drawImgFromlocal(imageId);
-   document.querySelector('.header2').style.display = 'none';
-   document.querySelector('main').style.display = 'none';
-   document.querySelector('.my-info').style.display = 'none';
-   document.querySelector('.canvas-btn-container').style.display = 'flex';
-   resizeCanvas();
+   setTimeout (function () {
+      document.querySelector('.header2').style.display = 'none';
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('.my-info').style.display = 'none';
+      document.querySelector('.canvas-btn-container').style.display = 'flex';
+      resizeCanvas();
+   },100)
 }
 
 function onSort(word) {
