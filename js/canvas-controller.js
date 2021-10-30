@@ -85,6 +85,7 @@ function drawImgFromlocal(imageId) {
 
 //MOUSE EVENTS ON CANVAS FROM LISTERNERS//
 function onDown(ev) {
+    // ev.preventDefault();
     gDrawValues.isClicked = true;
     console.log('down');
     console.log(ev);
@@ -97,6 +98,7 @@ function onMove(ev) {
 }
 
 function onUp(ev) {
+    // ev.preventDefault();
     gDrawValues.isClicked = false;
     var lines = getMeme().lines;
     for (var i = 0; i < lines.length; i++) {
