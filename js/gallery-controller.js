@@ -131,6 +131,7 @@ function goToGallery() {
 function goToMemes() {
    document.querySelector('main').style.display = 'block';
    document.querySelector('.canvas-btn-container').style.display = 'none';
+   document.querySelector('.my-info').style.display = 'none';
    renderMyMemes();
    onClear();
    clearMeme();

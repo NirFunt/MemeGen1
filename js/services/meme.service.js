@@ -9,7 +9,8 @@ var gMeme = {
     stickers: []
 }
 
-var gMemes = [];
+var gMemes = _loadMemesFromLocalStorage();
+if (!gMemes) gMemes = [];
 
 //GETTERS SECTION//
 function getMeme() {
@@ -142,6 +143,7 @@ function storeMeme () {
         var index = gMemes.findIndex(meme => meme === gMeme);
         gMemes[index] = gMeme;
     } else gMemes.push(gMeme);
+    _saveMemesToLocalStorage ();
 }
 
 function getMyMemes() {
@@ -150,4 +152,12 @@ function getMyMemes() {
 
 function setMemeFromMyMeme (index) {
     gMeme = gMemes[index];
+}
+
+function _saveMemesToLocalStorage () {
+    saveToLocalStorage('my-memes-DB',gMemes);
+}
+
+function _loadMemesFromLocalStorage () {
+  return loadFromLocalStorage('my-memes-DB');
 }
