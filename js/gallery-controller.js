@@ -19,13 +19,14 @@ function renderGrid() {
    var htmlStrArray = images.map(image => {
       return `<img src="${image.url}" class="square-img" id="${image.id}" onclick="onImageClick('${image.id}')">`;
    })
-      // console.log(htmlStrArray);
+   // console.log(htmlStrArray);
    elGalleryContainer.innerHTML = htmlStrArray.join('');
 }
 
 function renderKeyWords() {
    var elKeyWordsContainer = document.querySelector('.key-words-list');
    var elKeyWordsContainer2 = document.querySelector('.key-words-list2');
+   var elKeyWordsContainer3 = document.querySelector('.key-words-list3');
    var keywords = getKeyWords();
    var keywords2 = [];
    var strHTML = '';
@@ -36,6 +37,7 @@ function renderKeyWords() {
       keywords2.push(liHTML);
    }
    elKeyWordsContainer.innerHTML = strHTML;
+   elKeyWordsContainer3.innerHTML = strHTML;
    keywords2 = keywords2.slice(5);
    keywords2.push(`<li onclick="showMoreKeyWords()"> More </li>`);
    elKeyWordsContainer2.innerHTML = keywords2.join('');
@@ -56,10 +58,10 @@ function renderMyMemes() {
    var images = getImages();
    var memes = getMyMemes();
    var elGalleryContainer = document.querySelector('.gallery-container');
-   var htmlStrArray = memes.map( (meme,index) => {
-      return `<img src="${images[meme.selectedImgId-1].url}" class="square-img" id="${index}" onclick="onMemeClick('${index}')">`;
+   var htmlStrArray = memes.map((meme, index) => {
+      return `<img src="${images[meme.selectedImgId - 1].url}" class="square-img" id="${index}" onclick="onMemeClick('${index}')">`;
    })
-      // console.log(htmlStrArray);
+   // console.log(htmlStrArray);
    elGalleryContainer.innerHTML = htmlStrArray.join('');
 }
 
@@ -67,17 +69,17 @@ function renderMyMemes() {
 function onImageClick(imageId) {
    setMemeImgId(imageId)
    drawImgFromlocal(imageId);
-   setTimeout (function () {
+   setTimeout(function () {
       document.querySelector('.header2').style.display = 'none';
       document.querySelector('main').style.display = 'none';
       document.querySelector('.my-info').style.display = 'none';
       document.querySelector('.canvas-btn-container').style.display = 'flex';
       resizeCanvas();
-   },100)
+   }, 100)
 }
 
-function onMemeClick (memeId) {
-   setMemeFromMyMeme (memeId);
+function onMemeClick(memeId) {
+   setMemeFromMyMeme(memeId);
    drawAllLinesAndImages();
    document.querySelector('main').style.display = 'none';
    document.querySelector('.canvas-btn-container').style.display = 'flex';
@@ -167,5 +169,13 @@ function onStickerClick(stickerId) {
    gStickerDrag = true;
 }
 
+function showMoreKeyWords() {
+   document.querySelector('.show-more-keywords-modal').style.display = 'block';
+}
+
+function closeMoreKeyWordsModal() {
+   document.querySelector('.show-more-keywords-modal').style.display = 'none';
+   
+}
 
 
