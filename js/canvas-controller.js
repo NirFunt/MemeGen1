@@ -10,6 +10,7 @@ var gDrawValues = {
 }
 
 var gIsDragging = false;
+var gGrabedLine = null;
 
 //SETUP SECTION//
 function initCanvas() {
@@ -104,7 +105,7 @@ function onMove(ev) {
 function onUp(ev) {
     // ev.preventDefault();
     gDrawValues.isClicked = false;
-    
+
     var lines = getMeme().lines;
     for (var i = 0; i < lines.length; i++) {
         lines[i].isMarked = false;
@@ -126,6 +127,47 @@ function handleMouseEventsOnCanvas(ev) {
     }
     console.log(offsetX, offsetY);
     var meme = getMeme();
+
+    var linesPos = [];
+    var stickersPos = [];
+    for (var i = 0; i < meme.lines.length; i++) {
+        linesPos.push({ line: meme.lines[i], x: meme.lines[i].align.x, y: meme.lines[i].align.y });
+    }
+    for (var i = 0; i < meme.stickers.length; i++) {
+        stickersPos.push({ sticker: meme.stickers[i], x: meme.stickers[i].posX, y: meme.stickers[i].posY });
+    }
+
+
+    // function grab(linesPos, stickersPos, offsetX, offsetY) {
+
+    for (var i = 0; i < linesPos.length; i++) {
+        if (offsetX > 50 && offsetX < 500 && offsetY < linesPos[i].y &&
+            offsetY > linesPos[i].y - 25) {
+            console.log('i am a line')
+            gIsDragging = true;
+            gGrabedLine = linesPos[i].line;
+            break;
+        } else gIsDragging = false;
+    }
+    
+
+
+    if (gDrawValues.isClicked && gIsDragging) {
+        console.log('moving element')
+        gGrabedLine.align.x = offsetX - 50;
+        gGrabedLine.align.y = offsetY + 10;
+        drawAllLinesAndImages();
+    }
+
+
+
+    // }
+
+
+
+
+
+
     // if (meme.lines.length === 0) return; // prevent error when there isnt such line
     // handleGrabTextLine(meme, 0, offsetX, offsetY);
     // if (meme.lines.length === 1) return; // prevent error when there isnt such line
@@ -137,8 +179,8 @@ function handleMouseEventsOnCanvas(ev) {
     // support dragging 4 lines
 
     // if (meme.lines.stickers === 0) return; // prevent error when there isnt such line
-    handleGrabSticker(meme.stickers, 0, offsetX, offsetY);
-    handleGrabSticker(meme.stickers, 1, offsetX, offsetY);
+    // handleGrabSticker(meme.stickers, 0, offsetX, offsetY);
+    // handleGrabSticker(meme.stickers, 1, offsetX, offsetY);
     // support dragging two stickers
 }
 
@@ -161,16 +203,16 @@ function handleGrabTextLine(meme, num, offsetX, offsetY) {
 }
 
 function handleGrabSticker(stickers, num, offsetX, offsetY) {
-    console.log('aaaaaa',stickers[num].posX,stickers[num].posY)
-    if (offsetX > stickers[num].posX && offsetX < stickers[num].posX + 100 
-        && offsetY < stickers[num].posY+100 && offsetY > stickers[num].posY) {
-            console.log('hehe');
+    console.log('aaaaaa', stickers[num].posX, stickers[num].posY)
+    if (offsetX > stickers[num].posX && offsetX < stickers[num].posX + 100
+        && offsetY < stickers[num].posY + 100 && offsetY > stickers[num].posY) {
+        console.log('hehe');
         gElCanvas.style.cursor = 'pointer';
         gIsDragging = true;
         if (gDrawValues.isClicked) {
             gElCanvas.style.cursor = 'grab';
-            stickers[num].posX = offsetX-50;
-            stickers[num].posY = offsetY-50;
+            stickers[num].posX = offsetX - 50;
+            stickers[num].posY = offsetY - 50;
             drawAllLinesAndImages();
         }
     } else {
