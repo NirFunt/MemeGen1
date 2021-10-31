@@ -126,15 +126,20 @@ function handleMouseEventsOnCanvas(ev) {
     }
     console.log(offsetX, offsetY);
     var meme = getMeme();
-    if (meme.lines.length === 0) return; // prevent error when there isnt such line
-    handleGrabTextLine(meme, 0, offsetX, offsetY);
-    if (meme.lines.length === 1) return; // prevent error when there isnt such line
-    handleGrabTextLine(meme, 1, offsetX, offsetY);
-    if (meme.lines.length === 2) return; // prevent error when there isnt such line
-    handleGrabTextLine(meme, 2, offsetX, offsetY);
-    if (meme.lines.length === 3) return; // prevent error when there isnt such line
-    handleGrabTextLine(meme, 3, offsetX, offsetY);
+    // if (meme.lines.length === 0) return; // prevent error when there isnt such line
+    // handleGrabTextLine(meme, 0, offsetX, offsetY);
+    // if (meme.lines.length === 1) return; // prevent error when there isnt such line
+    // handleGrabTextLine(meme, 1, offsetX, offsetY);
+    // if (meme.lines.length === 2) return; // prevent error when there isnt such line
+    // handleGrabTextLine(meme, 2, offsetX, offsetY);
+    // if (meme.lines.length === 3) return; // prevent error when there isnt such line
+    // handleGrabTextLine(meme, 3, offsetX, offsetY);
     // support dragging 4 lines
+
+    // if (meme.lines.stickers === 0) return; // prevent error when there isnt such line
+    handleGrabSticker(meme.stickers, 0, offsetX, offsetY);
+    handleGrabSticker(meme.stickers, 1, offsetX, offsetY);
+    // support dragging two stickers
 }
 
 function handleGrabTextLine(meme, num, offsetX, offsetY) {
@@ -147,6 +152,25 @@ function handleGrabTextLine(meme, num, offsetX, offsetY) {
             gElCanvas.style.cursor = 'grab';
             meme.lines[num].align.x = offsetX;
             meme.lines[num].align.y = offsetY + 15;
+            drawAllLinesAndImages();
+        }
+    } else {
+        gElCanvas.style.cursor = 'default';
+        gIsDragging = false;
+    }
+}
+
+function handleGrabSticker(stickers, num, offsetX, offsetY) {
+    console.log('aaaaaa',stickers[num].posX,stickers[num].posY)
+    if (offsetX > stickers[num].posX && offsetX < stickers[num].posX + 100 
+        && offsetY < stickers[num].posY+100 && offsetY > stickers[num].posY) {
+            console.log('hehe');
+        gElCanvas.style.cursor = 'pointer';
+        gIsDragging = true;
+        if (gDrawValues.isClicked) {
+            gElCanvas.style.cursor = 'grab';
+            stickers[num].posX = offsetX-50;
+            stickers[num].posY = offsetY-50;
             drawAllLinesAndImages();
         }
     } else {
