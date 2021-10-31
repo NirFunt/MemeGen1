@@ -75,7 +75,7 @@ function onImageClick(imageId) {
       document.querySelector('.my-info').style.display = 'none';
       document.querySelector('.canvas-btn-container').style.display = 'flex';
       resizeCanvas();
-   }, 100)
+   }, 10)
 }
 
 function onMemeClick(memeId) {

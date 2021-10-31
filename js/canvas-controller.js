@@ -64,7 +64,7 @@ function drawAllLinesAndImages() {
                 gCtx.stroke();
             }
         }
-    }, 100);
+    }, 10);
 }
 
 function onClear() {
@@ -121,8 +121,8 @@ function handleMouseEventsOnCanvas(ev) {
     var offsetY = ev.offsetY;
     // console.log(ev);
     if (ev.type === 'touchmove') {
-        offsetX = ev.targetTouches[0].pageX;
-        offsetY = ev.targetTouches[0].pageY;
+        offsetX = ev.targetTouches[0].clientX;
+        offsetY = ev.targetTouches[0].clientY;
     }
     console.log(offsetX, offsetY);
     var meme = getMeme();
@@ -261,7 +261,7 @@ function loadImgToCanvas(ev) {
     }
     reader.readAsDataURL(ev.target.files[0]);
     document.querySelector('.share-load-modal').style.display = 'none';
-    setTimeout(resizeCanvas, 100);
+    setTimeout(resizeCanvas, 10);
 }
 
 //SAVES CANVAS CURRENT VIEW TO JEPG FILE ON LOCAL DOWNLOAD FOLDER//
