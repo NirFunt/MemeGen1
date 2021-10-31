@@ -10,7 +10,9 @@ var gDrawValues = {
 }
 
 var gIsDragging = false;
+var gIsDragging2 = false;
 var gGrabedLine = null;
+var gGrabedSticker = null;
 
 //SETUP SECTION//
 function initCanvas() {
@@ -138,8 +140,6 @@ function handleMouseEventsOnCanvas(ev) {
     }
 
 
-    // function grab(linesPos, stickersPos, offsetX, offsetY) {
-
     for (var i = 0; i < linesPos.length; i++) {
         if (offsetX > 50 && offsetX < 500 && offsetY < linesPos[i].y &&
             offsetY > linesPos[i].y - 25) {
@@ -149,77 +149,41 @@ function handleMouseEventsOnCanvas(ev) {
             break;
         } else gIsDragging = false;
     }
-    
 
+    for (var i = 0; i < stickersPos.length; i++) {
+        if (offsetX > stickersPos[i].x && offsetX < stickersPos[i].x +100 && 
+            offsetY < stickersPos[i].y +100 && offsetY > stickersPos[i].y) {
+            console.log('i am a sticker')
+            gIsDragging2 = true;
+            gGrabedSticker = stickersPos[i].sticker;
+            break;
+        } else gIsDragging2 = false;
+    }
+    
 
     if (gDrawValues.isClicked && gIsDragging) {
         console.log('moving element')
-        gGrabedLine.align.x = offsetX - 50;
-        gGrabedLine.align.y = offsetY + 10;
+        if (gGrabedLine) {
+            gGrabedLine.align.x = offsetX - 50;
+            gGrabedLine.align.y = offsetY + 10;
+        } 
         drawAllLinesAndImages();
     }
 
-
-
-    // }
-
-
-
-
-
-
-    // if (meme.lines.length === 0) return; // prevent error when there isnt such line
-    // handleGrabTextLine(meme, 0, offsetX, offsetY);
-    // if (meme.lines.length === 1) return; // prevent error when there isnt such line
-    // handleGrabTextLine(meme, 1, offsetX, offsetY);
-    // if (meme.lines.length === 2) return; // prevent error when there isnt such line
-    // handleGrabTextLine(meme, 2, offsetX, offsetY);
-    // if (meme.lines.length === 3) return; // prevent error when there isnt such line
-    // handleGrabTextLine(meme, 3, offsetX, offsetY);
-    // support dragging 4 lines
-
-    // if (meme.lines.stickers === 0) return; // prevent error when there isnt such line
-    // handleGrabSticker(meme.stickers, 0, offsetX, offsetY);
-    // handleGrabSticker(meme.stickers, 1, offsetX, offsetY);
-    // support dragging two stickers
-}
-
-function handleGrabTextLine(meme, num, offsetX, offsetY) {
-    if (offsetX > 50 && offsetX < 450 && offsetY < meme.lines[num].align.y &&
-        offsetY > meme.lines[num].align.y - 25 && !gIsDragging) {
-        gElCanvas.style.cursor = 'pointer';
-        meme.lines[num].isMarked = true;
-        gIsDragging = true;
-        if (gDrawValues.isClicked && meme.lines[num].isMarked) {
-            gElCanvas.style.cursor = 'grab';
-            meme.lines[num].align.x = offsetX;
-            meme.lines[num].align.y = offsetY + 15;
-            drawAllLinesAndImages();
-        }
-    } else {
-        gElCanvas.style.cursor = 'default';
-        gIsDragging = false;
+    if (gDrawValues.isClicked && gIsDragging2) {
+        console.log('moving element')
+        if (gGrabedSticker) {
+            gGrabedSticker.posX = offsetX-50;
+            gGrabedSticker.posY = offsetY-50;
+        } 
+        drawAllLinesAndImages();
     }
+
+    // gElCanvas.style.cursor = 'pointer';
+    // gElCanvas.style.cursor = 'grab';
+    // gElCanvas.style.cursor = 'default';
 }
 
-function handleGrabSticker(stickers, num, offsetX, offsetY) {
-    console.log('aaaaaa', stickers[num].posX, stickers[num].posY)
-    if (offsetX > stickers[num].posX && offsetX < stickers[num].posX + 100
-        && offsetY < stickers[num].posY + 100 && offsetY > stickers[num].posY) {
-        console.log('hehe');
-        gElCanvas.style.cursor = 'pointer';
-        gIsDragging = true;
-        if (gDrawValues.isClicked) {
-            gElCanvas.style.cursor = 'grab';
-            stickers[num].posX = offsetX - 50;
-            stickers[num].posY = offsetY - 50;
-            drawAllLinesAndImages();
-        }
-    } else {
-        gElCanvas.style.cursor = 'default';
-        gIsDragging = false;
-    }
-}
 
 //STICKERS FUNCTION SECTION//
 function drawStickerFromlocal(stickerId, posX, posY) {
