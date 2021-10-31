@@ -122,14 +122,11 @@ function handleMouseEventsOnCanvas(ev) {
     ev.preventDefault();
     var offsetX = ev.offsetX;
     var offsetY = ev.offsetY;
-    // console.log(ev);
     if (ev.type === 'touchmove') {
         offsetX = ev.targetTouches[0].clientX;
         offsetY = ev.targetTouches[0].clientY;
     }
-    console.log(offsetX, offsetY);
     var meme = getMeme();
-
     var linesPos = [];
     var stickersPos = [];
     for (var i = 0; i < meme.lines.length; i++) {
@@ -139,51 +136,53 @@ function handleMouseEventsOnCanvas(ev) {
         stickersPos.push({ sticker: meme.stickers[i], x: meme.stickers[i].posX, y: meme.stickers[i].posY });
     }
 
-
     for (var i = 0; i < linesPos.length; i++) {
         if (offsetX > 50 && offsetX < 500 && offsetY < linesPos[i].y &&
             offsetY > linesPos[i].y - 25) {
-            console.log('i am a line')
+            gElCanvas.style.cursor = 'pointer';
             gIsDragging = true;
             gGrabedLine = linesPos[i].line;
+            gGrabedLine.isMarked = true;
+            drawAllLinesAndImages();
             break;
-        } else gIsDragging = false;
+        } else {
+            gIsDragging = false;
+            gElCanvas.style.cursor = 'default';
+            if (gGrabedLine) gGrabedLine.isMarked = false;
+            drawAllLinesAndImages();
+        }
     }
 
     for (var i = 0; i < stickersPos.length; i++) {
-        if (offsetX > stickersPos[i].x && offsetX < stickersPos[i].x +100 && 
-            offsetY < stickersPos[i].y +100 && offsetY > stickersPos[i].y) {
-            console.log('i am a sticker')
+        if (offsetX > stickersPos[i].x && offsetX < stickersPos[i].x + 100 &&
+            offsetY < stickersPos[i].y + 100 && offsetY > stickersPos[i].y) {
             gIsDragging2 = true;
             gGrabedSticker = stickersPos[i].sticker;
+            gElCanvas.style.cursor = 'pointer';
             break;
-        } else gIsDragging2 = false;
+        } else {
+            gIsDragging2 = false;
+        }
     }
-    
 
     if (gDrawValues.isClicked && gIsDragging) {
-        console.log('moving element')
+        gElCanvas.style.cursor = 'grab';
         if (gGrabedLine) {
             gGrabedLine.align.x = offsetX - 50;
             gGrabedLine.align.y = offsetY + 10;
-        } 
+        }
         drawAllLinesAndImages();
     }
 
     if (gDrawValues.isClicked && gIsDragging2) {
-        console.log('moving element')
+        gElCanvas.style.cursor = 'grab';
         if (gGrabedSticker) {
-            gGrabedSticker.posX = offsetX-50;
-            gGrabedSticker.posY = offsetY-50;
-        } 
+            gGrabedSticker.posX = offsetX - 50;
+            gGrabedSticker.posY = offsetY - 50;
+        }
         drawAllLinesAndImages();
     }
-
-    // gElCanvas.style.cursor = 'pointer';
-    // gElCanvas.style.cursor = 'grab';
-    // gElCanvas.style.cursor = 'default';
 }
-
 
 //STICKERS FUNCTION SECTION//
 function drawStickerFromlocal(stickerId, posX, posY) {
